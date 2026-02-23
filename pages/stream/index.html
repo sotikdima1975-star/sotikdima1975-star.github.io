@@ -21,14 +21,98 @@
 <nav class="mobile-nav" id="mobile-nav"><a href="/" class="nav-link">Главная</a> <a href="/pages/about-me" class="nav-link">Обо мне</a> <a href="/pages/games" class="nav-link">Игры</a> <a href="/pages/stream" class="nav-link active">Стрим</a> <a href="/pages/team" class="nav-link">Команда</a> <a href="/pages/partners" class="nav-link">Партнеры</a>
 </nav>
 <main class="content">
-    <section class="section">
-        <h1 class="title-main">Стрим</h1>
-        <div class="grid">
-            <div class="card card-full">
-                <p class="card-desc">Мои стримы и трансляции.</p>
+    <section style="width:100%; margin:0; padding:0; display:flex; justify-content:center;">
+
+        <!-- ЧИСТЫЙ HUD-КОНТЕЙНЕР -->
+        <div style="
+        position: relative;
+        width: 100%;
+        max-width: 1600px;
+        aspect-ratio: 16/9;
+        background: transparent;
+        border-radius: 12px;
+        overflow: visible;
+    ">
+
+            <!-- HUD-ЭЛЕМЕНТЫ (ПРИМЕРЫ) -->
+
+            <!-- Последний донат будет добавлен динамически через JS -->
+
+            <!-- Новая подписка -->
+            <div style="
+            position:absolute;
+            top:20px;
+            left:20px;
+            background:rgba(0,0,0,0.45);
+            padding:12px 18px;
+            border-radius:8px;
+            color:#fff;
+            font-size:18px;
+            border:1px solid var(--primary);
+            pointer-events:none;
+        ">
+                Новая подписка: <strong>username123</strong>
             </div>
-        </div>
+
+            <!-- HUD: Цель с премиальным оранжевым прогресс-баром -->
+            <div style="
+    position:absolute;
+    bottom:20px;
+    left:50%;
+    transform:translateX(-50%);
+    background:rgba(0,0,0,0.45);
+    padding:14px 20px;
+    border-radius:10px;
+    color:#fff;
+    font-size:18px;
+    border:1px solid var(--primary);
+    width:420px;
+    pointer-events:none;
+">
+
+                <!-- Заголовок цели -->
+                <div style="
+        font-size:17px;
+        margin-bottom:8px;
+        text-align:center;
+    ">
+                    Цель: Новый микрофон
+                </div>
+
+                <!-- Прогресс-бар -->
+                <div style="
+        width:100%;
+        height:14px;
+        background:rgba(255,255,255,0.12); /* мягкий светлый фон */
+        border-radius:7px;
+        overflow:hidden;
+        margin-bottom:8px;
+    ">
+                    <div style="
+            width:64%; /* процент выполнения */
+            height:100%;
+            background:#f59e0b; /* ОРАНЖЕВАЯ ПОЛОСА */
+            border-radius:7px;
+        "></div>
+                </div>
+
+                <!-- Текст прогресса -->
+                <div style="
+        font-size:15px;
+        text-align:center;
+        opacity:0.9;
+    ">
+                    Собрано: 3200₽ / 5000₽ (64%)
+                </div>
+
+            </div>
+            </div>
+
+
     </section>
+
+
+
 
     <footer class="footer">
         <div class="footer-content">
@@ -127,6 +211,62 @@
             mapToEditPanelValues
         });
     }
+    // === Скрипт для случайного появления уведомления о донате ===
+    const donationNotifications = [
+        { name: 'Анна', amount: 200 },
+        { name: 'Михаил', amount: 150 },
+        { name: 'Елена', amount: 300 },
+        { name: 'Дмитрий', amount: 100 },
+        { name: 'Ольга', amount: 500 },
+        { name: 'Иван', amount: 120 },
+        { name: 'Катя', amount: 250 }
+    ];
+
+    const donationElement = document.createElement('div');
+    donationElement.style.cssText = `
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        background: rgba(0,0,0,0.6);
+        padding: 12px 18px;
+        border-radius: 8px;
+        color: #fff;
+        font-size: 18px;
+        border: 1px solid var(--primary);
+        pointer-events: none;
+        opacity: 0;
+        transition: opacity 0.4s ease-in-out;
+        z-index: 1000;
+    `;
+    donationElement.innerHTML = `Последний донат: <strong>Имя — 150₽</strong>`;
+    document.querySelector('section').appendChild(donationElement);
+
+    function showRandomDonation() {
+        const randomDonation = donationNotifications[Math.floor(Math.random() * donationNotifications.length)];
+        donationElement.innerHTML = `Последний донат: <strong>${randomDonation.name} — ${randomDonation.amount}₽</strong>`;
+        
+        // Показать
+        donationElement.style.opacity = '1';
+        
+        // Скрыть через 4 секунды
+        setTimeout(() => {
+            donationElement.style.opacity = '0';
+        }, 4000);
+    }
+
+    function scheduleNextDonation() {
+        const nextTime = (Math.random() * (7 - 1) + 1) * 60 * 1000; // от 1 до 7 минут в мс
+        setTimeout(() => {
+            showRandomDonation();
+            scheduleNextDonation(); // Запланировать следующее
+        }, nextTime);
+    }
+
+    // Запускаем первый раз после первой минуты
+    setTimeout(() => {
+        showRandomDonation();
+        scheduleNextDonation();
+    }, 60 * 1000);
 </script>
 </body>
 </html>
