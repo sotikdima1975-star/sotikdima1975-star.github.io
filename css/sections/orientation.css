@@ -1,0 +1,15 @@
+/* ========== ORIENTATION LOGIC (главное исправление) ========== */
+
+/* ПОРТРЕТ — только мобильное меню */
+@media (orientation: portrait) {
+    .nav { display: none !important; }
+    .menu-toggle { display: flex !important; }
+    .mobile-nav { display: flex !important; }
+}
+
+/* ЛАНДШАФТ — только горизонтальное меню */
+@media (orientation: landscape) {
+    .nav { display: flex !important; }
+    .menu-toggle { display: none !important; }
+    .mobile-nav { display: none !important; }
+}

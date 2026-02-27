@@ -1,0 +1,45 @@
+/* ========== BREAKPOINTS (оставлены как есть, но без конфликтов меню) ========== */
+/* 1440+ */
+@media (min-width: 1440px) {
+    .header { height: 110px; }
+    .header__inner { padding: 0 60px; gap: 50px; }
+    .logo { width: 70px; height: 70px; font-size: 35px; }
+    .title { font-size: 28px; }
+    .title-main { font-size: 4rem; margin-bottom: 70px; }
+    .subtitle { font-size: 1.3rem; margin-bottom: 70px; }
+    .section { padding: 0 50px; }
+    .grid { gap: 32px; grid-template-columns: repeat(3, 1fr); }
+    .card { padding: 40px 32px; }
+    .card-full { padding: 48px 40px; font-size: 17px; }
+    .card-icon { font-size: 48px; margin-bottom: 20px; }
+    .card-title { font-size: 20px; }
+    .card-desc { font-size: 15px; }
+    .stats-grid { grid-template-columns: repeat(4, 1fr); gap: 24px; }
+    .stat-number { font-size: 40px; }
+    .streams-section { padding: 100px 0; margin: 100px 0; }
+    .streams-title { font-size: 3rem; margin-bottom: 70px; padding: 0 50px; }
+    .streams-container { padding: 0 50px; }
+    .footer { padding: 70px 50px 45px; margin: 140px auto 0; }
+    .ai-credit { font-size: 15px; max-width: 700px; }
+    .footer-buttons { gap: 20px; }
+    .footer-btn { padding: 14px 28px; font-size: 14px; }
+    .content { margin-top: 110px; }
+}
+
+/* 1024–1439 */
+@media (min-width: 1024px) and (max-width: 1920px) {
+    .header { height: 100px; }
+    .header__inner { padding: 0 40px; gap: 40px; }
+    .logo { width: 60px; height: 60px; font-size: 28px; }
+    .title { font-size: 24px; }
+    .title-main { font-size: 3.5rem; margin-bottom: 60px; }
+    .subtitle { font-size: 1.1rem; margin-bottom: 60px; }
+    .section { padding: 0 40px; }
+    .grid { gap: 28px; grid-template-columns: repeat(3, 1fr); }
+    .card { padding: 36px 28px; }
+    .card-full { padding: 44px 36px; font-size: 16px; }
+    .card-icon { font-size: 44px; margin-bottom: 18px; }
+    .card-title { font-size: 18px; }
+    .card-desc { font-size: 14px; }
+    .stats-grid { grid-template-columns: repeat(4, 1fr); gap: 20px; }
+    .stat-number { font-size: 36
