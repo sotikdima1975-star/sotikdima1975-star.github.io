@@ -361,6 +361,10 @@ border-top: 2px solid var(--border);
 border-bottom: 2px solid var(--border);
 padding: 80px 0;
 margin: 80px 0;
+position: sticky;
+top: 100px;
+z-index: 10;
+background: var(--secondary);
 }
 
 .streams-title {
