@@ -6,15 +6,15 @@ document.addEventListener('DOMContentLoaded', function() {
   
   if (menuToggle && mobileNav) {
     menuToggle.addEventListener('click', function() {
-      mobileNav.classList.toggle('active');
-      menuToggle.classList.toggle('active');
+      mobileNav.classList.toggle('open');
+      menuToggle.classList.toggle('open');
     });
     
     // Закрытие меню при нажатии клавиши Escape
     document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape' && mobileNav.classList.contains('active')) {
-        mobileNav.classList.remove('active');
-        menuToggle.classList.remove('active');
+      if (e.key === 'Escape' && mobileNav.classList.contains('open')) {
+        mobileNav.classList.remove('open');
+        menuToggle.classList.remove('open');
       }
     });
     
@@ -22,8 +22,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const navLinks = mobileNav.querySelectorAll('.nav-link');
     navLinks.forEach(link => {
       link.addEventListener('click', () => {
-        mobileNav.classList.remove('active');
-        menuToggle.classList.remove('active');
+        mobileNav.classList.remove('open');
+        menuToggle.classList.remove('open');
       });
     });
   }

@@ -1,0 +1,65 @@
+# Зависимости
+node_modules/
+npm-debug.log
+yarn-error.log
+package-lock.json
+yarn.lock
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+*.sublime-project
+*.sublime-workspace
+
+# OS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Локальные файлы
+.env
+.env.local
+.env.*.local
+config.local.js
+
+# Сборка и дистрибутив
+dist/
+build/
+*.min.js
+*.min.css
+
+# Логи
+logs/
+*.log
+npm-debug.log*
+
+# Временные файлы
+*.tmp
+.cache/
+temp/
+
+# Файлы, специфичные для разработки
+.vscode/settings.json
+.vscode/extensions.json
+
+# Резервные копии
+*.bak
+*.backup
+*~
+
+# Mac
+.AppleDouble
+.LSOverride
+.TemporaryItems
+.VolumeIcon.icns
+
+# Windows
+desktop.ini
