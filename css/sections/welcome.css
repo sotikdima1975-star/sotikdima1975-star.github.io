@@ -19,7 +19,7 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-image: url('/images/12345.png');
+  background-image: url('../../images/12345.png');
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;

@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Донаты - СайтСотика</title>
+    <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+    <script src="../../_sdk/element_sdk.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/sections/base.css">
+    <link rel="stylesheet" href="../../css/sections/header.css">
+    <link rel="stylesheet" href="../../css/sections/navigation.css">
+    <link rel="stylesheet" href="../../css/sections/content.css">
+    <link rel="stylesheet" href="../../css/sections/footer.css">
+    <link rel="stylesheet" href="../../css/sections/breakpoints.css">
+    <link rel="stylesheet" href="../../css/sections/donate.css">
+    <script src="../../_sdk/data_sdk.js" type="text/javascript"></script>
+    <script src="../../js/sections/mobile-menu.js"></script>
+    <script src="../../js/sections/config.js"></script>
+</head>
+<body class="h-full">
+    <a id="home"></a>
+<header class="header" id="header">
+    <div class="header__container"><!-- BRAND SECTION - 3D FLOATING LOGO --> <a href="../../" class="brand">
+      <div class="logo">
+       S
+      </div><span class="brand-text">СайтСотика</span> </a> <!-- DESKTOP NAVIGATION - 3D FRAMED ITEMS -->
+    <nav class="nav" id="desktop-nav"><a href="../../" class="nav-link">Главная</a> <a href="../about-me/" class="nav-link">Обо мне</a> <a href="../games/" class="nav-link">Игры</a> <a href="../stream/" class="nav-link">Стрим</a> <a href="../team/" class="nav-link">Команда</a> <a href="../partners/" class="nav-link">Партнеры</a>
+     </nav><!-- HEADER ACTIONS -->
+     <div class="header-actions"><a href="./" class="cta-button">Донат</a> <button class="menu-toggle" id="menu-toggle" aria-label="Меню"> <span></span> <span></span> <span></span> </button>
+     </div>
+    </div>
+
+   </header>
+<!-- MOBILE NAVIGATION -->
+<nav class="mobile-nav" id="mobile-nav"><a href="../../" class="nav-link">Главная</a> <a href="../about-me/" class="nav-link">Обо мне</a> <a href="../games/" class="nav-link">Игры</a> <a href="../stream/" class="nav-link">Стрим</a> <a href="../team/" class="nav-link">Команда</a> <a href="../partners/" class="nav-link">Партнеры</a>
+</nav>
+
+<main class="content">
+    <section class="donate-hero">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 py-12 md:py-16">
+            <div class="text-center mb-12">
+                <h1 class="donate-title">Поддержи стрим</h1>
+                <p class="donate-subtitle">Твоя поддержка помогает мне создавать лучший контент</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
+                <!-- Блок отправки доната -->
+                <div class="lg:col-span-2">
+                    <div class="donate-card">
+                        <h2 class="donate-card-title">Отправить донат</h2>
+                        
+                        <!-- Ввод суммы -->
+                        <div class="mb-6">
+                            <label for="donateAmount" class="donate-label">Сумма (₽)</label>
+                            <input type="number" id="donateAmount" class="donate-input" placeholder="Введите сумму" min="1" value="100">
+                        </div>
+
+                        <!-- Пресеты -->
+                        <div class="mb-6">
+                            <p class="donate-label mb-3">Или выберите сумму</p>
+                            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                                <button class="donate-preset" data-amount="50">50 ₽</button>
+                                <button class="donate-preset" data-amount="100">100 ₽</button>
+                                <button class="donate-preset" data-amount="200">200 ₽</button>
+                                <button class="donate-preset" data-amount="500">500 ₽</button>
+                            </div>
+                        </div>
+
+                        <!-- Переключатель анонимности -->
+                        <div class="mb-6 flex items-center gap-3">
+                            <input type="checkbox" id="anonymousDonation" class="donate-checkbox">
+                            <label for="anonymousDonation" class="donate-label m-0 cursor-pointer">Отправить анонимно</label>
+                        </div>
+
+                        <!-- Кнопка оплаты -->
+                        <button class="donate-button-primary w-full mb-4">Оплатить</button>
+
+                        <!-- Информация о DonationAlerts -->
+                        <p class="text-center text-sm text-gray-600 mb-4">
+                            Платежи обрабатываются через <a href="https://www.donationalerts.com/" target="_blank" class="text-amber-600 hover:text-amber-700 underline">DonationAlerts</a>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- QR-код и информация -->
+                <div class="lg:col-span-1">
+                    <div class="donate-card">
+                        <h3 class="donate-card-title text-lg mb-4">QR-код для доната</h3>
+                        <div class="donate-qr-container mb-4">
+                            <img src="https://via.placeholder.com/200?text=QR+Code" alt="QR-код" class="w-full h-auto rounded-lg">
+                        </div>
+                        <p class="text-center text-xs text-gray-600">Отсканируй QR-код для быстрого доната</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Блок статистики -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+                <div class="donate-stat-card">
+                    <h4 class="donate-stat-label">За стрим</h4>
+                    <p class="donate-stat-value">₽5,240</p>
+                </div>
+                <div class="donate-stat-card">
+                    <h4 class="donate-stat-label">За месяц</h4>
+                    <p class="donate-stat-value">₽24,680</p>
+                </div>
+                <div class="donate-stat-card">
+                    <h4 class="donate-stat-label">За всё время</h4>
+                    <p class="donate-stat-value">₽145,320</p>
+                </div>
+                <div class="donate-stat-card">
+                    <h4 class="donate-stat-label">Помощь нужна</h4>
+                    <p class="donate-stat-value">+₽2,760</p>
+                </div>
+            </div>
+
+            <!-- Блок цели -->
+            <div class="donate-card mb-12">
+                <h2 class="donate-card-title">Текущая цель: Новый микрофон</h2>
+                <div class="mb-4">
+                    <div class="w-full bg-gray-200 rounded-full h-16 overflow-hidden">
+                        <div class="donate-progress-bar" style="width: 64%">
+                            <span class="donate-progress-text">64%</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid grid-cols-3 gap-4 text-center">
+                    <div>
+                        <p class="text-sm text-gray-600">Собрано</p>
+                        <p class="text-xl font-bold text-amber-700">₽3,200</p>
+                    </div>
+                    <div>
+                        <p class="text-sm text-gray-600">Нужно</p>
+                        <p class="text-xl font-bold text-amber-700">₽5,000</p>
+                    </div>
+                    <div>
+                        <p class="text-sm text-gray-600">Осталось</p>
+                        <p class="text-xl font-bold text-amber-700">₽1,800</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Блок топ донатеров -->
+            <div class="mb-12">
+                <h2 class="donate-section-title">Топ донатеры 🏆</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6" id="topDonatorsContainer">
+                    <!-- Заполнится JS -->
+                </div>
+            </div>
+
+            <!-- Блок истории донатов -->
+            <div>
+                <h2 class="donate-section-title">История донатов 📋</h2>
+                <div class="donate-card">
+                    <div class="donate-history-container" id="donateHistoryContainer">
+                        <!-- Заполнится JS -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-content">
+            © 2024 СайтСотика • Дмитрий Переднего
+        </div>
+    </footer>
+</main>
+
+<script src="../../js/sections/donate.js" type="text/javascript"></script>
+</body>
+</html>

@@ -11,28 +11,32 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/css/sections/base.css">
-    <link rel="stylesheet" href="/css/sections/header.css">
-    <link rel="stylesheet" href="/css/sections/navigation.css">
-    <link rel="stylesheet" href="/css/sections/mobile-menu.css">
-    <link rel="stylesheet" href="/css/sections/content.css">
-    <link rel="stylesheet" href="/css/sections/stats.css">
-    <link rel="stylesheet" href="/css/sections/streams.css">
-    <link rel="stylesheet" href="/css/sections/footer.css">
-    <link rel="stylesheet" href="/css/sections/orientation.css">
-    <link rel="stylesheet" href="/css/sections/breakpoints.css">
+    <link rel="stylesheet" href="../../css/sections/base.css">
+    <link rel="stylesheet" href="../../css/sections/header.css">
+    <link rel="stylesheet" href="../../css/sections/navigation.css">
+    <link rel="stylesheet" href="../../css/sections/content.css">
+    <link rel="stylesheet" href="../../css/sections/stats.css">
+    <link rel="stylesheet" href="../../css/sections/streams.css">
+    <link rel="stylesheet" href="../../css/sections/footer.css">
+    <link rel="stylesheet" href="../../css/sections/orientation.css">
+    <link rel="stylesheet" href="../../css/sections/breakpoints.css">
 </head>
 <body class="h-full">
     <a id="home"></a>
-<header class="header">
-    <div class="header__inner">
-        <div class="brand"><span class="logo" id="logo-text">S</span> <span class="title" id="title-text">СайтСотика</span>
-        </div>
-        <nav class="nav" id="desktop-nav"><a href="/" class="nav-link">Главная</a> <a href="/pages/about-me/index.html" class="nav-link">Обо мне</a> <a href="/pages/games/index.html" class="nav-link">Игры</a> <a href="/pages/stream/index.html" class="nav-link active">Стрим</a> <a href="/pages/team/index.html" class="nav-link">Команда</a> <a href="/pages/partners/index.html" class="nav-link">Партнеры</a>
-        </nav><button class="menu-toggle" id="menu-toggle" aria-label="Меню"> <span></span> <span></span> <span></span> </button>
+<header class="header" id="header">
+    <div class="header__container"><!-- BRAND SECTION - 3D FLOATING LOGO --> <a href="../../" class="brand">
+      <div class="logo">
+       S
+      </div><span class="brand-text">СайтСотика</span> </a> <!-- DESKTOP NAVIGATION - 3D FRAMED ITEMS -->
+    <nav class="nav" id="desktop-nav"><a href="../../" class="nav-link">Главная</a> <a href="../about-me/" class="nav-link">Обо мне</a> <a href="../games/" class="nav-link">Игры</a> <a href="./" class="nav-link active">Стрим</a> <a href="../team/" class="nav-link">Команда</a> <a href="../partners/" class="nav-link">Партнеры</a>
+     </nav><!-- HEADER ACTIONS -->
+     <div class="header-actions"><a href="../donate/" class="cta-button">Донат</a> <button class="menu-toggle" id="menu-toggle" aria-label="Меню"> <span></span> <span></span> <span></span> </button>
+     </div>
     </div>
-</header>
-<nav class="mobile-nav" id="mobile-nav"><a href="/" class="nav-link">Главная</a> <a href="/pages/about-me/index.html" class="nav-link">Обо мне</a> <a href="/pages/games/index.html" class="nav-link">Игры</a> <a href="/pages/stream/index.html" class="nav-link active">Стрим</a> <a href="/pages/team/index.html" class="nav-link">Команда</a> <a href="/pages/partners/index.html" class="nav-link">Партнеры</a>
+
+   </header>
+<!-- MOBILE NAVIGATION -->
+<nav class="mobile-nav" id="mobile-nav"><a href="../../" class="nav-link">Главная</a> <a href="../about-me/" class="nav-link">Обо мне</a> <a href="../games/" class="nav-link">Игры</a> <a href="./" class="nav-link active">Стрим</a> <a href="../team/" class="nav-link">Команда</a> <a href="../partners/" class="nav-link">Партнеры</a>
 </nav>
 <main class="content">
     <section style="width:100%; margin:0; padding:0; display:flex; justify-content:center;">
@@ -145,8 +149,8 @@
         </div>
     </footer>
 </main>
-    <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
-    <script src="/js/sections/mobile-menu.js"></script>
-    <script src="/js/sections/config.js"></script>
+    <script src="../../_sdk/data_sdk.js" type="text/javascript"></script>
+    <script src="../../js/sections/mobile-menu.js"></script>
+    <script src="../../js/sections/config.js"></script>
 </body>
 </html>
