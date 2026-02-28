@@ -1,74 +1,34 @@
-/* ========== FOOTER ========== */
+/* ════════════════════════════════════════════════════════════════════════════
+   LUXURY FOOTER — Elegant Bottom Bar
+   ════════════════════════════════════════════════════════════════════════════ */
+
 .footer {
-    max-width: 1200px;
-    margin: 120px auto 0;
-    padding: 60px 40px 40px;
-    border-top: 2px solid var(--border);
-    text-align: center;
-    width: 100%;
+  width: 100%;
+  padding: 16px 0;
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 1.2px;
+  color: #7a6f64;
+  background: linear-gradient(135deg, #f8f6f1 0%, #f0ebe5 100%);
+  border-top: 1px solid rgba(180, 140, 100, 0.2);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  position: relative;
+  z-index: 100;
 }
 
 .footer-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 24px;
+  position: relative;
+  z-index: 1;
+  text-transform: uppercase;
 }
 
-.ai-credit {
-    font-size: 14px;
-    color: #666;
-    line-height: 1.8;
-    max-width: 600px;
-}
-
-.ai-credit strong {
-    color: var(--text);
-    font-weight: 600;
-}
-
-.footer-buttons {
-    display: flex;
-    gap: 16px;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
-.footer-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    padding: 12px 24px;
-    background: linear-gradient(135deg, var(--primary) 0%, #2a2a2a 100%);
-    color: var(--secondary);
-    text-decoration: none;
-    border-radius: 8px;
-    font-size: 14px;
-    font-weight: 600;
-    transition: all 0.3s ease;
-    border: none;
-    cursor: pointer;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-}
-
-.footer-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
-}
-
-.footer-divider {
-    width: 100%;
-    height: 1px;
-    background: var(--border);
-    margin: 20px 0;
-}
-
-.footer-credit {
-    font-size: 12px;
-    color: #999;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    font-weight: 500;
+@media (max-width: 768px) {
+  .footer {
+    padding: 12px 0;
+    font-size: 11px;
+  }
 }

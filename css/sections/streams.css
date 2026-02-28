@@ -1,58 +1,49 @@
-/* ========== STREAMS SECTION ========== */
+/* Секция стримов */
 .streams-section {
-    width: 100%;
-    background: linear-gradient(135deg, rgba(0, 0, 0, 0.02) 0%, rgba(0, 0, 0, 0.01) 100%);
-    border-top: 2px solid var(--border);
-    border-bottom: 2px solid var(--border);
-    padding: 80px 0;
-    margin: 80px 0;
-    position: static;
-    top: 100px;
-    z-index: 10;
-    background: var(--secondary);
+  margin: 4rem 0;
+  padding: 2rem;
+  background: white;
+  border-radius: var(--border-radius);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
 .streams-title {
-    max-width: 1200px;
-    margin: 0 auto 60px;
-    padding: 0 40px;
-    font-size: 2.5rem;
-    font-weight: 900;
-    font-family: 'Playfair Display', serif;
-    color: var(--text);
-}
-
-.streams-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 40px;
-    width: 100%;
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 1rem;
+  color: var(--primary-color);
 }
 
 .streams-subtitle {
-    text-align: center;
-    font-size: 1.1rem;
-    color: #666;
-    margin-bottom: 40px;
-    font-weight: 500;
+  text-align: center;
+  color: var(--secondary-color);
+  margin-bottom: 2rem;
 }
 
-.streams-wrapper { width: 100%; position: relative; }
+.streams-container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.streams-wrapper {
+  position: relative;
+  width: 100%;
+  height: 0;
+  padding-bottom: 56.25%;
+}
 
 .streams-player {
-    width: 100%;
-    position: relative;
-    overflow: hidden;
-    border-radius: 16px;
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
-    background: rgba(0, 0, 0, 0.05);
-    border: 1px solid var(--border);
-    aspect-ratio: 16 / 9;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
 
 .streams-player iframe {
-    width: 100%;
-    height: 100%;
-    border: none;
-    display: block;
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: var(--border-radius);
 }

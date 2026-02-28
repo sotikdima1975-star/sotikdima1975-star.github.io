@@ -1,15 +1,51 @@
-/* ========== ORIENTATION LOGIC (главное исправление) ========== */
+/* Медиа-запросы по ориентации (portrait / landscape) */
 
-/* ПОРТРЕТ — только мобильное меню */
-@media (orientation: portrait) {
-    .nav { display: none !important; }
-    .menu-toggle { display: flex !important; }
-    .mobile-nav { display: flex !important; }
+/* Адаптация для портретного режима на мобильных */
+@media (max-width: 768px) and (orientation: portrait) {
+  .header__inner {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+  }
+  
+  .menu-toggle {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+  }
+  
+  .title-main {
+    font-size: 2rem;
+  }
+  
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .footer-content {
+    grid-template-columns: 1fr;
+  }
 }
 
-/* ЛАНДШАФТ — только горизонтальное меню */
-@media (orientation: landscape) {
-    .nav { display: flex !important; }
-    .menu-toggle { display: none !important; }
-    .mobile-nav { display: none !important; }
+/* Адаптация для ландшафтного режима на мобильных */
+@media (max-width: 768px) and (orientation: landscape) {
+  .title-main {
+    font-size: 1.8rem;
+  }
+  
+  .card {
+    padding: 1.5rem;
+  }
+  
+  .stat {
+    padding: 1.5rem;
+  }
+  
+  .streams-title {
+    font-size: 1.8rem;
+  }
 }

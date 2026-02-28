@@ -8,39 +8,51 @@
     <script src="/_sdk/element_sdk.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&amp;family=Montserrat:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/css/sections/base.css">
     <link rel="stylesheet" href="/css/sections/header.css">
     <link rel="stylesheet" href="/css/sections/navigation.css">
     <link rel="stylesheet" href="/css/sections/mobile-menu.css">
     <link rel="stylesheet" href="/css/sections/content.css">
+    <link rel="stylesheet" href="/css/sections/welcome.css">
     <link rel="stylesheet" href="/css/sections/stats.css">
     <link rel="stylesheet" href="/css/sections/streams.css">
     <link rel="stylesheet" href="/css/sections/footer.css">
     <link rel="stylesheet" href="/css/sections/orientation.css">
     <link rel="stylesheet" href="/css/sections/breakpoints.css">
     <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+    <script src="/js/sections/mobile-menu.js"></script>
+    <script src="/js/sections/config.js"></script>
+    <script src="/js/sections/welcome.js" type="text/javascript"></script>
 </head>
 <body class="h-full">
-<header class="header">
-    <div class="header__inner">
-        <div class="brand"><span class="logo" id="logo-text">S</span> <span class="title" id="title-text">СайтСотика</span>
-        </div>
-        <nav class="nav" id="desktop-nav"><a href="/" class="nav-link active">Главная</a> <a href="/pages/about-me" class="nav-link">Обо мне</a> <a href="/pages/games" class="nav-link">Игры</a> <a href="/pages/stream" class="nav-link">Стрим</a> <a href="/pages/team" class="nav-link">Команда</a> <a href="/pages/partners" class="nav-link">Партнеры</a>
-        </nav><button class="menu-toggle" id="menu-toggle" aria-label="Меню"> <span></span> <span></span> <span></span> </button>
+<header class="header" id="header">
+    <div class="header__container"><!-- BRAND SECTION - 3D FLOATING LOGO --> <a href="/" class="brand">
+      <div class="logo">
+       S
+      </div><span class="brand-text">СайтСотика</span> </a> <!-- DESKTOP NAVIGATION - 3D FRAMED ITEMS -->
+     <nav class="nav" id="desktop-nav"><a href="/" class="nav-link active">Главная</a> <a href="/pages/about-me" class="nav-link">Обо мне</a> <a href="/pages/games" class="nav-link">Игры</a> <a href="/pages/stream" class="nav-link">Стрим</a> <a href="/pages/team" class="nav-link">Команда</a> <a href="/pages/partners" class="nav-link">Партнеры</a>
+     </nav><!-- HEADER ACTIONS -->
+     <div class="header-actions"><button class="cta-button">Донат</button> <button class="menu-toggle" id="menu-toggle" aria-label="Меню"> <span></span> <span></span> <span></span> </button>
+     </div>
     </div>
-</header>
+
+   </header>
+<!-- MOBILE NAVIGATION -->
 <nav class="mobile-nav" id="mobile-nav"><a href="/" class="nav-link active">Главная</a> <a href="/pages/about-me" class="nav-link">Обо мне</a> <a href="/pages/games" class="nav-link">Игры</a> <a href="/pages/stream" class="nav-link">Стрим</a> <a href="/pages/team" class="nav-link">Команда</a> <a href="/pages/partners" class="nav-link">Партнеры</a>
 </nav>
+
+
 <main class="content">
-    <section class="section">
+    <section class="section welcome-section" id="welcome-section" style="background-color: transparent;">
         <h1 class="title-main">Добро пожаловать на СайтСотика!</h1>
         <div class="grid">
             <div class="card card-full">
                 <p class="card-desc">Это сайт Дмитрия Переднего, стримера с ограниченными возможностями. С 2006 года я живу без пальцев на руках. Вернее — учусь так жить, приспосабливаюсь к жизни с ограниченными возможностями. Давят со всех сторон, но я не сдаюсь. Создал новый сайт на бесплатной платформе, которую пока не блокируют наши сайты.</p>
             </div>
         </div>
-        <div class="grid">
+        
+        <div class="grid-cards">
             <div class="card">
                 <div class="card-icon">
                     ✨
@@ -68,20 +80,6 @@
                 </div>
                 <h3 class="card-title">Новый Сайт</h3>
                 <p class="card-desc">Создан на платформе, которая пока не блокирует наши проекты.</p>
-            </div>
-            <div class="card">
-                <div class="card-icon">
-                    📱
-                </div>
-                <h3 class="card-title">Доступность</h3>
-                <p class="card-desc">Сайт работает на всех устройствах, чтобы каждый мог зайти.</p>
-            </div>
-            <div class="card">
-                <div class="card-icon">
-                    ⚙️
-                </div>
-                <h3 class="card-title">Развитие</h3>
-                <p class="card-desc">Я продолжаю улучшать сайт и учиться новому каждый день.</p>
             </div>
         </div>
         <div class="stats-grid">
@@ -142,22 +140,9 @@
 
     <footer class="footer">
         <div class="footer-content">
-            <div class="ai-credit"><strong>ℹ️ Информация о сайте:</strong><br>
-                Этот сайт создан с помощью искусственного интеллекта, но <strong>все ошибки я исправляю сам</strong>. Если вы заметили проблему — напишите мне в группу ВК, я всё устраню!
-            </div>
-            <div class="footer-buttons"><a href="https://vk.com/siteofsotik" target="_blank" rel="noopener noreferrer" class="footer-btn"> ВК СайтСотика </a> <a href="#home" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;" class="footer-btn"> Обо Мне </a>
-            </div>
-            <div class="footer-divider"></div>
-            <div class="footer-credit">
-                © 2024 СайтСотика • Дмитрий Переднего
-            </div>
-        </div>
-        <div class="footer-iconTop">
-            <a href="#home" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;"><i class='bx bx-up-arrow-alt'></i></a>
+            © 2024 СайтСотика • Дмитрий Переднего
         </div>
     </footer>
 </main>
-<script src="/js/sections/mobile-menu.js"></script>
-<script src="/js/sections/config.js"></script>
 </body>
 </html>
