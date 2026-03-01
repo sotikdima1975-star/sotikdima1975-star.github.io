@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="ru" class="h-full">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Forza Motorsport 7 — СайтСотика</title>
+
+  <!-- Подключение шрифтов -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+
+  <!-- Подключение ОБЩИХ стилей сайта -->
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/sections/header.css">
+  <link rel="stylesheet" href="/css/menu.css">
+  <link rel="stylesheet" href="/css/sections/footer.css">
+
+  <!-- Только стили для вкладок (локальные, без дублирования) -->
+  <style>
+    /* ════════════════════════════════════════════════════════════════════════════
+       LUXURY TABS — 3D Framed Premium Tabs (в точности как стиль сайта)
+       ════════════════════════════════════════════════════════════════════════════ */
+
+    .game-tabs {
+      max-width: 1200px;
+      margin: 40px auto;
+      background: rgba(248, 246, 241, 0.8);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1.5px solid rgba(180, 140, 100, 0.3);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 12px 32px rgba(120, 80, 50, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+    }
+
+    .tabs-nav {
+      display: flex;
+      gap: 2px;
+      padding: 8px;
+      background: rgba(230, 220, 210, 0.6);
+      border-bottom: 1px solid rgba(180, 140, 100, 0.3);
+      border-radius: 14px 14px 0 0;
+    }
+
+    .tab-btn {
+      font-family: 'Poppins', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: #5c4a2f;
+      padding: 10px 20px;
+      cursor: pointer;
+      border: none;
+      background: transparent;
+      border-radius: 8px;
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      position: relative;
+      z-index: 1;
+    }
+
+    .tab-btn::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(212, 165, 116, 0.1), rgba(180, 140, 100, 0.08));
+      border: 1.5px solid rgba(180, 140, 100, 0.2);
+      border-radius: 8px;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      z-index: -1;
+    }
+
+    .tab-btn:hover::before {
+      opacity: 1;
+    }
+
+    .tab-btn.active {
+      color: #8a6f4f;
+      background: linear-gradient(135deg, rgba(212, 165, 116, 0.15), rgba(180, 140, 100, 0.1));
+      box-shadow: 0 4px 12px rgba(120, 80, 50, 0.12);
+    }
+
+    .tab-btn.active::before {
+      opacity: 1;
+      background: linear-gradient(135deg, rgba(212, 165, 116, 0.2), rgba(180, 140, 100, 0.12));
+      box-shadow: 0 6px 16px rgba(120, 80, 50, 0.15);
+    }
+
+    .tabs-content {
+      padding: 24px;
+      color: #5c4a2f;
+      font-family: 'Poppins', sans-serif;
+      line-height: 1.7;
+    }
+
+    .tab-panel {
+      display: none;
+    }
+
+    .tab-panel.active {
+      display: block;
+      animation: fadeIn 0.4s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Адаптивность */
+    @media (max-width: 768px) {
+      .tabs-nav {
+        flex-wrap: wrap;
+      }
+      .tab-btn {
+        font-size: 11px;
+        padding: 8px 14px;
+      }
+      .tabs-content {
+        padding: 16px;
+      }
+    }
+  </style>
+
+  <!-- Скрипт переключения вкладок -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          // Убираем активные классы
+          document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+          document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+
+          // Добавляем активный класс текущему
+          btn.classList.add('active');
+          document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+        });
+      });
+    });
+  </script>
+</head>
+<body class="h-full">
+  <!-- Header -->
+  <header class="header" id="header">
+    <div class="header__container">
+      <a href="../../" class="brand">
+        <div class="logo">S</div>
+        <span class="brand-text">СайтСотика</span>
+      </a>
+      <nav class="nav" id="desktop-nav">
+        <a href="../../" class="nav-link">Главная</a>
+        <a href="../../about-me/" class="nav-link">Обо мне</a>
+        <a href="../" class="nav-link">Игры</a>
+        <a href="../../stream/" class="nav-link">Стрим</a>
+        <a href="../../team/" class="nav-link">Команда</a>
+        <a href="../../partners/" class="nav-link">Партнеры</a>
+      </nav>
+      <div class="header-actions">
+        <a href="../../donate/" class="cta-button">Донат</a>
+        <button class="menu-toggle" id="menu-toggle" aria-label="Меню">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Nav -->
+  <nav class="mobile-nav" id="mobile-nav">
+    <a href="../../" class="nav-link">Главная</a>
+    <a href="../../about-me/" class="nav-link">Обо мне</a>
+    <a href="../" class="nav-link">Игры</a>
+    <a href="../../stream/" class="nav-link">Стрим</a>
+    <a href="../../team/" class="nav-link">Команда</a>
+    <a href="../../partners/" class="nav-link">Партнеры</a>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="content">
+  <!-- Banner -->
+  <section class="games-banner">
+    <div class="relative w-full h-[600px] md:h-[800px] lg:h-[900px] flex items-center justify-center mt-15" style="margin-top: 60px;">
+      <img src="/images/cayman2017.jpg" alt="Forza Motorsport 7" class="absolute inset-0 w-full h-full object-cover" />
+      <div class="relative z-10 text-center text-white px-4">
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold">Forza Motorsport 7</h1>
+        <p class="mt-2 text-amber-200 text-lg">2017 — Гонка, коллекционирование, кастомизация</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+    <!-- Вкладки -->
+    <section class="game-tabs">
+      <div class="tabs-nav">
+        <button data-tab="about" class="tab-btn active">Об игре</button>
+        <button data-tab="rivals" class="tab-btn">Соперники</button>
+        <button data-tab="settings" class="tab-btn">Настройки</button>
+        <button data-tab="records" class="tab-btn">Рекорды</button>
+      </div>
+
+      <div class="tabs-content">
+        <div id="tab-about" class="tab-panel active">
+          <p><strong>Forza Motorsport 7</strong> — гоночный симулятор 2017 года от Turn 10 Studios. Игра вышла на Windows 10 и Xbox One и стала десятым проектом серии. Она предлагает реалистичную физику, динамическую погоду и один из крупнейших автопарков в жанре.</p>
+
+          <p><strong>Автомобили:</strong> более 700 машин, включая суперкаров, классику, прототипы и модели Porsche, Ferrari, Lamborghini, Nissan, Ford и других производителей.</p>
+
+          <p><strong>Трассы:</strong> 30 локаций и более 200 вариаций, включая Nürburgring, Spa‑Francorchamps, Suzuka, Dubai и другие. Поддерживается динамическое время суток и погода.</p>
+
+          <p><strong>Геймплей:</strong> улучшенная физика шин и подвески, глубокая настройка машин, карьера, мультиплеер, режим «Соперники», Forzathon‑ивенты и локальный split‑screen.</p>
+
+          <p><strong>Статус:</strong> игра снята с продажи в 2021 году, но владельцы могут скачивать и играть без ограничений.</p>
+
+          <p><strong>Галерея:</strong></p>
+          <ul>
+            <li><a href="https://upload.wikimedia.org/wikipedia/en/0/0a/Forza_Motorsport_7_cover_art.jpg" target="_blank">Porsche 911 GT2 RS — обложка FM7</a></li>
+            <li><a href="https://upload.wikimedia.org/wikipedia/en/4/4e/Forza_Motorsport_7_gameplay.jpg" target="_blank">Геймплей</a></li>
+            <li><a href="https://upload.wikimedia.org/wikipedia/en/2/2b/Forza_Motorsport_7_Dubai.jpg" target="_blank">Трасса Dubai</a></li>
+          </ul>
+        </div>
+
+        <div id="tab-rivals" class="tab-panel">
+          <p><strong>Соперники:</strong> список ваших основных противников — игроков, с которыми вы регулярно соревнуетесь. Просматривайте их лучшие машины, достижения и рекорды на трассах.</p>
+          <p class="mt-3">Также доступна статистика личных встреч и сравнение времени кругов.</p>
+        </div>
+
+        <div id="tab-settings" class="tab-panel">
+          <p><strong>Настройки:</strong> полная кастомизация управления, графики, помощи и реализма. Настройте чувствительность руля, ABS, TCS, антибуфер, камеру и HUD.</p>
+          <p class="mt-3">Выберите уровень сложности: от казуального до профессионального симулятора.</p>
+        </div>
+
+        <div id="tab-records" class="tab-panel">
+          <p><strong>Рекорды:</strong> ваши лучшие результаты — время круга, максимальная скорость, количество побед, пройденные километры и достижения.</p>
+          <p class="mt-3">Сравнивайте рекорды по трассам, машинам и сезонам. Используйте фильтры для анализа прогресса.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Галерея и кнопка -->
+    <section class="section mt-8">
+      <h3 class="text-xl font-semibold mt-6">Галерея</h3>
+      <div class="game-gallery mt-3">
+        <img src="../../assets/games/fm7.jpg" alt="fm7-1">
+        <img src="../../assets/games/fm7.jpg" alt="fm7-2">
+        <img src="../../assets/games/fm7.jpg" alt="fm7-3">
+        <img src="../../assets/games/fm7.jpg" alt="fm7-4">
+      </div>
+
+      <div class="mt-6">
+        <a href="../" class="btn-more">Назад к играм</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer mt-12">
+    <div class="footer-content">© 2024 СайтСотика • Дмитрий Переднего</div>
+  </footer>
+</body>
+</html>
