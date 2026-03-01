@@ -1,4 +1,74 @@
 <!doctype html>
+<html lang="ru" class="h-full">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Игры — Forza Motorsport</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../css/sections/base.css">
+  <link rel="stylesheet" href="../../css/sections/header.css">
+  <link rel="stylesheet" href="../../css/sections/navigation.css">
+  <link rel="stylesheet" href="../../css/sections/content.css">
+  <link rel="stylesheet" href="../../css/sections/stats.css">
+  <link rel="stylesheet" href="../../css/sections/streams.css">
+  <link rel="stylesheet" href="../../css/sections/footer.css">
+  <link rel="stylesheet" href="../../css/sections/orientation.css">
+  <link rel="stylesheet" href="../../css/sections/breakpoints.css">
+  <link rel="stylesheet" href="../../css/sections/games.css">
+  <script src="../../js/sections/mobile-menu.js"></script>
+  <script src="../../js/sections/config.js"></script>
+  <script src="../../js/sections/games.js" defer></script>
+</head>
+<body class="h-full">
+  <header class="header">
+    <div class="header__container">
+      <a href="../../" class="brand"><div class="logo">S</div><span class="brand-text">СайтСотика</span></a>
+      <nav class="nav" id="desktop-nav">
+        <a href="../../" class="nav-link">Главная</a>
+        <a href="../about-me/" class="nav-link">Обо мне</a>
+        <a href="./" class="nav-link active">Игры</a>
+        <a href="../stream/" class="nav-link">Стрим</a>
+        <a href="../team/" class="nav-link">Команда</a>
+        <a href="../partners/" class="nav-link">Партнеры</a>
+      </nav>
+      <div class="header-actions">
+        <a href="../donate/" class="cta-button">Донат</a>
+        <button class="menu-toggle" id="menu-toggle" aria-label="Меню"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
+
+  <nav class="mobile-nav" id="mobile-nav">
+    <a href="../../" class="nav-link">Главная</a>
+    <a href="../about-me/" class="nav-link">Обо мне</a>
+    <a href="./" class="nav-link active">Игры</a>
+    <a href="../stream/" class="nav-link">Стрим</a>
+    <a href="../team/" class="nav-link">Команда</a>
+    <a href="../partners/" class="nav-link">Партнеры</a>
+  </nav>
+
+  <main class="content">
+    <!-- Banner -->
+    <section class="games-banner" style="height: clamp(220px, 35vh, 420px); background-image: linear-gradient(180deg, rgba(10,10,10,0.8), rgba(34,34,34,0.9));">
+      <div class="container mx-auto px-4 text-center">
+        <h1 class="games-banner__title text-4xl md:text-6xl font-extrabold text-white">Forza Motorsport</h1>
+        <p class="text-lg md:text-2xl text-amber-200 mt-2">Игровая серия</p>
+      </div>
+    </section>
+
+    <section class="section container mx-auto px-4 py-8">
+      <h2 class="text-2xl font-semibold mb-4">Игры серии</h2>
+      <div id="games-list" class="games-grid"></div>
+    </section>
+  </main>
+
+  <footer class="footer mt-12">
+    <div class="footer-content">© 2024 СайтСотика • Дмитрий Переднего</div>
+  </footer>
+</body>
+</html>
+<!doctype html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
