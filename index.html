@@ -435,33 +435,33 @@
                 const heroTitle = document.querySelector('.hero-title');
                 const heroSubtitle = document.querySelector('.hero-subtitle');
                 const heroCta = document.querySelector('.hero-cta');
-                
+
                 // === 1. АНИМАЦИЯ ПОЯВЛЕНИЯ ЭЛЕМЕНТОВ ===
-                
+
                 function animateHero() {
                     // Устанавливаем начальные стили для анимации
                     heroTitle.style.opacity = '0';
                     heroTitle.style.transform = 'translateY(30px)';
-                    
+
                     heroSubtitle.style.opacity = '0';
                     heroSubtitle.style.transform = 'translateY(30px)';
-                    
+
                     heroCta.style.opacity = '0';
                     heroCta.style.transform = 'translateY(30px)';
-                    
+
                     // Задаем задержки для каскадной анимации
                     setTimeout(() => {
                         heroTitle.style.transition = 'all 1s cubic-bezier(0.4, 0, 0.2, 1)';
                         heroTitle.style.opacity = '1';
                         heroTitle.style.transform = 'translateY(0)';
                     }, 300);
-                    
+
                     setTimeout(() => {
                         heroSubtitle.style.transition = 'all 1s cubic-bezier(0.4, 0, 0.2, 1)';
                         heroSubtitle.style.opacity = '1';
                         heroSubtitle.style.transform = 'translateY(0)';
                     }, 600);
-                    
+
                     setTimeout(() => {
                         heroCta.style.transition = 'all 1s cubic-bezier(0.4, 0, 0.2, 1)';
                         heroCta.style.opacity = '1';
@@ -471,16 +471,16 @@
 
                 // Запускаем анимацию при загрузке
                 animateHero();
-                
+
                 // === 2. ЭФФЕКТ ПАРАЛЛАКСА ДЛЯ ГЛАВНОЙ СЕКЦИИ ===
-                
+
                 function setupParallax() {
                     window.addEventListener('mousemove', (e) => {
                         const xAxis = (window.innerWidth / 2 - e.pageX) / 30;
                         const yAxis = (window.innerHeight / 2 - e.pageY) / 30;
-                        
+
                         hero.style.transform = `translateY(${yAxis * 0.5}px) translateX(${xAxis * 0.5}px)`;
-                        
+
                         // Добавляем 3D эффект для текста
                         heroTitle.style.transform = `translateY(${yAxis * 0.3}px) translateX(${xAxis * 0.3}px)`;
                         heroSubtitle.style.transform = `translateY(${yAxis * 0.2}px) translateX(${xAxis * 0.2}px)`;
@@ -489,27 +489,27 @@
                     window.addEventListener('mouseleave', () => {
                         hero.style.transition = 'all 0.5s ease';
                         hero.style.transform = 'translateY(0) translateX(0)';
-                        
+
                         heroTitle.style.transition = 'all 0.5s ease';
                         heroTitle.style.transform = 'translateY(0) translateX(0)';
-                        
+
                         heroSubtitle.style.transition = 'all 0.5s ease';
                         heroSubtitle.style.transform = 'translateY(0) translateX(0)';
                     });
                 }
 
                 setupParallax();
-                
+
                 // === 3. АНИМАЦИЯ КНОПКИ CTA ===
-                
+
                 function setupCtaAnimation() {
                     let glowInterval;
-                    
+
                     heroCta.addEventListener('mouseenter', function() {
                         // Увеличение и тень
                         this.style.transform = 'translateY(-5px) scale(1.05)';
                         this.style.boxShadow = '0 15px 35px rgba(212, 165, 116, 0.5)';
-                        
+
                         // Эффект свечения
                         glowInterval = setInterval(() => {
                             const currentBoxShadow = this.style.boxShadow;
@@ -525,7 +525,7 @@
                         // Возвращаем оригинальные стили
                         this.style.transform = 'translateY(0) scale(1)';
                         this.style.boxShadow = '0 6px 20px rgba(212, 165, 116, 0.3)';
-                        
+
                         // Останавливаем мерцание
                         if (glowInterval) {
                             clearInterval(glowInterval);
@@ -537,7 +537,7 @@
                         if (!heroCta.matches(':hover')) {
                             heroCta.style.transition = 'all 0.3s ease';
                             heroCta.style.transform = 'translateY(-3px)';
-                            
+
                             setTimeout(() => {
                                 heroCta.style.transform = 'translateY(0)';
                             }, 300);
@@ -546,9 +546,9 @@
                 }
 
                 setupCtaAnimation();
-                
+
                 // === 4. АНИМАЦИЯ ФОНА ГЕРОЯ ===
-                
+
                 function animateHeroBackground() {
                     const colors = [
                         'linear-gradient(135deg, #4A2E1F, #664A3E)',
@@ -557,14 +557,14 @@
                         'linear-gradient(135deg, #4A2E1F, #8B6A5D)'
                     ];
                     let colorIndex = 0;
-                    
+
                     // Меняем фон каждые 8 секунд
                     setInterval(() => {
                         hero.style.transition = 'background 2s ease';
                         hero.style.background = colors[colorIndex];
                         colorIndex = (colorIndex + 1) % colors.length;
                     }, 8000);
-                    
+
                     // Начальный фон
                     hero.style.background = colors[0];
                     hero.style.backgroundSize = 'cover';
@@ -572,13 +572,13 @@
                 }
 
                 animateHeroBackground();
-                
+
                 // === 5. ЭФФЕКТ ТИПОГРАФИИ ===
-                
+
                 function typeEffect(element, text, speed = 50) {
                     let i = 0;
                     element.textContent = '';
-                    
+
                     const timer = setInterval(() => {
                         if (i < text.length) {
                             element.textContent += text.charAt(i);
@@ -588,16 +588,16 @@
                         }
                     }, speed);
                 }
-                
+
                 // Запускаем эффект печатания для заголовка
                 setTimeout(() => {
                     const titleText = heroTitle.textContent;
                     heroTitle.textContent = '';
                     typeEffect(heroTitle, titleText, 80);
                 }, 1200);
-                
+
                 // === 6. АНИМАЦИЯ СТРЕЛКИ ВНИЗ ===
-                
+
                 function createScrollIndicator() {
                     const scrollIndicator = document.createElement('div');
                     scrollIndicator.innerHTML = `
@@ -641,21 +641,21 @@
                             }
                         </style>
                     `;
-                    
+
                     hero.appendChild(scrollIndicator);
                 }
 
                 createScrollIndicator();
-                
+
                 // === 7. АДАПТИВНЫЕ АНИМАЦИИ ===
-                
+
                 function handleResize() {
                     if (window.innerWidth < 768) {
                         // Адаптируем анимации для мобильных устройств
                         heroTitle.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
                         heroSubtitle.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
                         heroCta.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
-                        
+
                         // Отключаем параллакс на мобильных
                         window.removeEventListener('mousemove', null);
                     } else {
@@ -666,9 +666,9 @@
 
                 window.addEventListener('resize', handleResize);
                 handleResize(); // Инициализируем при загрузке
-                
+
                 // === 8. ПРОГРЕСС ЗАГРУЗКИ КОНТЕНТА ===
-                
+
                 function simulateLoading() {
                     const loadingBar = document.createElement('div');
                     loadingBar.style.cssText = `
@@ -681,20 +681,20 @@
                         width: 0%;
                         transition: width 0.1s linear;
                     `;
-                    
+
                     document.body.appendChild(loadingBar);
-                    
+
                     let width = 0;
                     const interval = setInterval(() => {
                         width += Math.random() * 15;
                         if (width >= 100) {
                             width = 100;
                             clearInterval(interval);
-                            
+
                             setTimeout(() => {
                                 loadingBar.style.opacity = '0';
                                 loadingBar.style.transition = 'opacity 0.3s ease';
-                                
+
                                 setTimeout(() => {
                                     document.body.removeChild(loadingBar);
                                 }, 300);
@@ -706,19 +706,19 @@
 
                 // Запускаем анимацию загрузки
                 simulateLoading();
-                
+
                 // === 9. АНИМАЦИЯ ПРИ НАВЕДЕНИИ НА ССЫЛКИ ===
-                
+
                 function setupLinkHoverEffects() {
                     const links = hero.querySelectorAll('a');
-                    
+
                     links.forEach(link => {
                         let originalText = link.textContent;
-                        
+
                         link.addEventListener('mouseenter', function() {
                             this.style.transform = 'translateY(-3px)';
                             this.style.boxShadow = '0 8px 25px rgba(212, 165, 116, 0.4)';
-                            
+
                             // Эффект смены текста
                             if (this.classList.contains('hero-cta')) {
                                 this.textContent = '→ Начать приключение ←';
@@ -728,7 +728,7 @@
                         link.addEventListener('mouseleave', function() {
                             this.style.transform = 'translateY(0)';
                             this.style.boxShadow = '0 6px 20px rgba(212, 165, 116, 0.3)';
-                            
+
                             if (this.classList.contains('hero-cta')) {
                                 this.textContent = originalText;
                             }
@@ -737,9 +737,9 @@
                 }
 
                 setupLinkHoverEffects();
-                
+
                 // === 10. ИНТЕРАКТИВНЫЕ ЭФФЕКТЫ ===
-                
+
                 function setupInteractiveEffects() {
                     // Эффект частиц при клике
                     hero.addEventListener('click', function(e) {
@@ -756,9 +756,9 @@
                             animation: hero-particle 1s forwards;
                             z-index: 1000;
                         `;
-                        
+
                         document.body.appendChild(particle);
-                        
+
                         // Удаляем частицу после анимации
                         setTimeout(() => {
                             if (particle.parentElement) {
@@ -766,7 +766,7 @@
                             }
                         }, 1000);
                     });
-                    
+
                     // Стиль для анимации частиц
                     const style = document.createElement('style');
                     style.textContent = `@keyframes hero-particle {
@@ -867,9 +867,9 @@
                 const gameCards = document.querySelectorAll('.game-card');
                 const gameImages = document.querySelectorAll('.game-image');
                 const gameLinks = document.querySelectorAll('.game-link');
-                
+
                 // === 1. АНИМАЦИЯ ПОЯВЛЕНИЯ КАРТОЧЕК ===
-                
+
                 function animateGameCards() {
                     // Устанавливаем начальные стили для анимации
                     gameCards.forEach(card => {
@@ -888,28 +888,28 @@
                 }
 
                 animateGameCards();
-                
+
                 // === 2. ИНТЕРАКТИВНЫЙ ЭФФЕКТ ДЛЯ КАРТОЧЕК ===
-                
+
                 function setupCardInteractions() {
                     gameCards.forEach((card, index) => {
                         const image = card.querySelector('.game-image');
                         const content = card.querySelector('.game-content');
                         const title = card.querySelector('.game-title');
                         const description = card.querySelector('.game-desc');
-                        
+
                         // Эффект при наведении
                         card.addEventListener('mouseenter', function() {
                             // Увеличение карточки
                             this.style.transform = 'translateY(-15px) scale(1.02)';
                             this.style.boxShadow = '0 20px 40px rgba(0, 0, 0, 0.2)';
-                            
+
                             // Изменение изображения
                             if (image) {
                                 image.style.transform = 'scale(1.1)';
                                 image.style.boxShadow = '0 15px 30px rgba(74, 46, 31, 0.4)';
                             }
-                            
+
                             // Появление дополнительной информации
                             setTimeout(() => {
                                 description.style.opacity = '1';
@@ -921,12 +921,12 @@
                             // Возвращаем оригинальные стили
                             this.style.transform = 'translateY(0) scale(1)';
                             this.style.boxShadow = '0 6px 20px rgba(0, 0, 0, 0.08)';
-                            
+
                             if (image) {
                                 image.style.transform = 'scale(1)';
                                 image.style.boxShadow = 'none';
                             }
-                            
+
                             description.style.opacity = '0.8';
                             description.style.transform = 'translateY(2px)';
                         });
@@ -949,10 +949,10 @@
                                     animation: ripple 0.6s linear;
                                     z-index: 1;
                                 `;
-                                
+
                                 this.style.position = 'relative';
                                 this.appendChild(ripple);
-                                
+
                                 // Удаляем эффект волны после анимации
                                 setTimeout(() => {
                                     if (ripple.parentElement) {
@@ -965,21 +965,21 @@
                 }
 
                 setupCardInteractions();
-                
+
                 // === 3. ЭФФЕКТЫ ДЛЯ ИЗОБРАЖЕНИЙ ===
-                
+
                 function setupImageEffects() {
                     gameImages.forEach((image, index) => {
                         // Начальные стили
                         image.style.transition = 'all 0.4s ease';
                         image.style.background = `linear-gradient(45deg, #4A2E1F ${index * 20 + 20}%, #664A3E 100%)`;
-                        
+
                         // Анимация градиента
                         setInterval(() => {
                             const hue = (Date.now() / 50) % 360;
-                            image.style.background = `linear-gradient(45deg, 
-                                hsl(${hue}, 50%, 30%) 0%, 
-                                hsl(${(hue + 60) % 360}, 50%, 40%) 50%, 
+                            image.style.background = `linear-gradient(45deg,
+                                hsl(${hue}, 50%, 30%) 0%,
+                                hsl(${(hue + 60) % 360}, 50%, 40%) 50%,
                                 hsl(${(hue + 120) % 360}, 50%, 50%) 100%
                             )`;
                         }, 2000);
@@ -987,16 +987,16 @@
                 }
 
                 setupImageEffects();
-                
+
                 // === 4. АНИМАЦИЯ ЗАГОЛОВКА СЕКЦИИ ===
-                
+
                 function animateSectionTitle() {
                     const title = document.querySelector('.section-title');
                     if (title) {
                         title.style.opacity = '0';
                         title.style.transform = 'translateY(20px)';
                         title.style.transition = 'all 1s cubic-bezier(0.4, 0, 0.2, 1)';
-                        
+
                         setTimeout(() => {
                             title.style.opacity = '1';
                             title.style.transform = 'translateY(0)';
@@ -1005,18 +1005,18 @@
                 }
 
                 animateSectionTitle();
-                
+
                 // === 5. КАСТОМНАЯ АНИМАЦИЯ ДЛЯ ССЫЛОК ===
-                
+
                 function setupLinkAnimations() {
                     gameLinks.forEach(link => {
                         let originalText = link.textContent;
-                        
+
                         link.addEventListener('mouseenter', function() {
                             // Эффект увеличения
                             this.style.transform = 'translateX(5px)';
                             this.style.color = '#4A2E1F';
-                            
+
                             // Эффект смены текста
                             this.innerHTML = `<span style="animation: blink 0.5s;">${originalText} →</span>`;
                         });
@@ -1038,9 +1038,9 @@
                 }
 
                 setupLinkAnimations();
-                
+
                 // === 6. ИНТЕРАКТИВНЫЙ ФИЛЬТР ИГР ===
-                
+
                 function setupGameFilter() {
                     // Создаем панель фильтрации
                     const filterContainer = document.createElement('div');
@@ -1053,7 +1053,7 @@
                         border-radius: 12px;
                         backdrop-filter: blur(10px);
                     `;
-                    
+
                     filterContainer.innerHTML = `
                         <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
                             <button class="filter-btn active" data-filter="all" style="
@@ -1098,12 +1098,12 @@
                             ">Стратегии</button>
                         </div>
                     `;
-                    
+
                     gamesContainer.insertBefore(filterContainer, gamesGrid);
-                    
+
                     // Добавляем обработчики для кнопок фильтра
                     const filterButtons = filterContainer.querySelectorAll('.filter-btn');
-                    
+
                     filterButtons.forEach(button => {
                         button.addEventListener('click', function() {
                             // Обновляем активную кнопку
@@ -1112,17 +1112,17 @@
                                 btn.style.background = 'transparent';
                                 btn.style.color = 'var(--primary)';
                             });
-                            
+
                             this.classList.add('active');
                             this.style.background = 'var(--accent)';
                             this.style.color = 'var(--primary)';
-                            
+
                             const filter = this.getAttribute('data-filter');
-                            
+
                             // Фильтруем карточки
                             gameCards.forEach(card => {
                                 const gameType = card.getAttribute('data-type') || 'all';
-                                
+
                                 if (filter === 'all' || gameType === filter) {
                                     card.style.display = 'block';
                                     setTimeout(() => {
@@ -1139,7 +1139,7 @@
                             });
                         });
                     });
-                    
+
                     // Добавляем типы к существующим карточкам
                     gameCards[0].setAttribute('data-type', 'sandbox'); // Minecraft
                     gameCards[1].setAttribute('data-type', 'shooter');  // CS:GO
@@ -1147,9 +1147,9 @@
                 }
 
                 setupGameFilter();
-                
+
                 // === 7. АНИМАЦИЯ ПРИ ПРОКРУТКЕ ДО СЕКЦИИ ===
-                
+
                 function setupScrollAnimation() {
                     const observer = new IntersectionObserver((entries) => {
                         entries.forEach(entry => {
@@ -1161,13 +1161,13 @@
                                     title.style.opacity = '0';
                                     title.style.transform = 'translateY(30px)';
                                     title.style.transition = 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
-                                    
+
                                     setTimeout(() => {
                                         title.style.opacity = '1';
                                         title.style.transform = 'translateY(0)';
                                     }, 100);
                                 }
-                                
+
                                 // Анимация карточек
                                 const cards = entry.target.querySelectorAll('.game-card');
                                 cards.forEach((card, index) => {
@@ -1176,14 +1176,14 @@
                                         card.style.opacity = '0';
                                         card.style.transform = 'translateY(30px)';
                                         card.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
-                                        
+
                                         setTimeout(() => {
                                             card.style.opacity = '1';
                                             card.style.transform = 'translateY(0)';
                                         }, 200 + (index * 150));
                                     }
                                 });
-                                
+
                                 // Останавливаем наблюдение после анимации
                                 observer.unobserve(entry.target);
                             }
@@ -1192,27 +1192,27 @@
                         threshold: 0.1,
                         rootMargin: '0px 0px -100px 0px'
                     });
-                    
+
                     observer.observe(gamesSection);
                 }
 
                 setupScrollAnimation();
-                
+
                 // === 8. ЭФФЕКТ МАГНИТА ДЛЯ КУРСОРА ===
-                
+
                 function setupMagneticEffect() {
                     gameCards.forEach(card => {
                         card.addEventListener('mousemove', function(e) {
                             const rect = this.getBoundingClientRect();
                             const x = e.clientX - rect.left;
                             const y = e.clientY - rect.top;
-                            
+
                             const centerX = rect.width / 2;
                             const centerY = rect.height / 2;
-                            
+
                             const moveX = (x - centerX) / 20;
                             const moveY = (y - centerY) / 20;
-                            
+
                             this.style.transform = `translateY(${moveY}px) translateX(${moveX}px) scale(1.02)`;
                         });
 
@@ -1223,19 +1223,19 @@
                 }
 
                 setupMagneticEffect();
-                
+
                 // === 9. АНИМАЦИЯ ИКОНОК ===
-                
+
                 function animateGameIcons() {
                     gameImages.forEach((image, index) => {
                         const icon = image.textContent;
-                        
+
                         // Создаем анимацию для иконки
                         image.innerHTML = `<span style="
                             display: inline-block;
                             animation: bounce 2s infinite ${index * 0.5}s;
                         ">${icon}</span>`;
-                        
+
                         // Добавляем CSS анимации
                         const style = document.createElement('style');
                         style.textContent = `@keyframes bounce {
@@ -1247,9 +1247,9 @@
                 }
 
                 animateGameIcons();
-                
+
                 // === 10. СОЗДАНИЕ ДОПОЛНИТЕЛЬНЫХ ЭФФЕКТОВ ===
-                
+
                 function createAdditionalEffects() {
                     // Добавляем частицы вокруг секции
                     const particles = document.createElement('div');
@@ -1264,7 +1264,7 @@
                         z-index: -1;
                         overflow: hidden;
                     `;
-                    
+
                     // Создаем 20 частиц
                     for (let i = 0; i < 20; i++) {
                         const particle = document.createElement('div');
@@ -1273,7 +1273,7 @@
                         const posY = Math.random() * 100;
                         const delay = Math.random() * 5;
                         const duration = Math.random() * 3 + 2;
-                        
+
                         particle.style.cssText = `
                             position: absolute;
                             width: ${size}px;
@@ -1285,13 +1285,13 @@
                             opacity: 0;
                             animation: float ${duration}s infinite ${delay}s ease-in-out;
                         `;
-                        
+
                         particles.appendChild(particle);
                     }
-                    
+
                     gamesSection.style.position = 'relative';
                     gamesSection.appendChild(particles);
-                    
+
                     // Добавляем CSS для анимации частиц
                     const style = document.createElement('style');
                     style.textContent = `@keyframes float {
@@ -1300,13 +1300,13 @@
                         100% { transform: translateY(-20px) rotate(360deg); opacity: 0; }
                     }`;
                     document.head.appendChild(style);
-                    
+
                     // Анимация фона секции
                     let hue = 0;
                     setInterval(() => {
                         hue = (hue + 0.5) % 360;
-                        gamesSection.style.background = `linear-gradient(135deg, 
-                            hsl(${hue}, 20%, 95%) 0%, 
+                        gamesSection.style.background = `linear-gradient(135deg,
+                            hsl(${hue}, 20%, 95%) 0%,
                             hsl(${(hue + 30) % 360}, 20%, 90%) 100%
                         )`;
                     }, 100);
@@ -1447,26 +1447,26 @@
                 const streamEmbed = document.querySelector('.stream-embed');
                 const streamSchedule = document.querySelector('.stream-schedule');
                 const twitchIframe = streamEmbed?.querySelector('iframe');
-                
+
                 // === 1. АНИМАЦИЯ ПОЯВЛЕНИЯ СЕКЦИИ ===
-                
+
                 function animateStreamSection() {
                     const title = document.querySelector('.stream-title');
                     const desc = document.querySelector('.stream-desc');
-                    
+
                     // Начальные стили
                     if (title) {
                         title.style.opacity = '0';
                         title.style.transform = 'translateY(20px)';
                         title.style.transition = 'all 1s cubic-bezier(0.4, 0, 0.2, 1)';
                     }
-                    
+
                     if (desc) {
                         desc.style.opacity = '0';
                         desc.style.transform = 'translateY(20px)';
                         desc.style.transition = 'all 1s cubic-bezier(0.4, 0, 0.2, 1)';
                     }
-                    
+
                     // Анимация с задержкой
                     setTimeout(() => {
                         if (title) {
@@ -1474,7 +1474,7 @@
                             title.style.transform = 'translateY(0)';
                         }
                     }, 300);
-                    
+
                     setTimeout(() => {
                         if (desc) {
                             desc.style.opacity = '1';
@@ -1484,22 +1484,22 @@
                 }
 
                 animateStreamSection();
-                
+
                 // === 2. ИНТЕРАКТИВНЫЙ ЭФФЕКТ ДЛЯ ЭМБЕДА ===
-                
+
                 function setupEmbedInteraction() {
                     if (streamEmbed) {
                         // Начальные стили
                         streamEmbed.style.transition = 'all 0.4s ease';
                         streamEmbed.style.transform = 'scale(1)';
                         streamEmbed.style.boxShadow = '0 15px 40px rgba(0, 0, 0, 0.18)';
-                        
+
                         // Эффект при наведении
                         streamEmbed.addEventListener('mouseenter', function() {
                             this.style.transform = 'scale(1.02)';
                             this.style.boxShadow = '0 25px 50px rgba(0, 0, 0, 0.25)';
                             this.style.border = '4px solid white';
-                            
+
                             // Эффект для рамки
                             this.style.borderImage = 'linear-gradient(45deg, var(--accent), #e6b88d) 1';
                         });
@@ -1526,11 +1526,11 @@
                                 animation: ripple 0.8s linear;
                                 z-index: 1;
                             `;
-                            
+
                             this.style.position = 'relative';
                             this.style.overflow = 'hidden';
                             this.appendChild(ripple);
-                            
+
                             // Удаляем эффект волны
                             setTimeout(() => {
                                 if (ripple.parentElement) {
@@ -1542,44 +1542,44 @@
                 }
 
                 setupEmbedInteraction();
-                
+
                 // === 3. АНИМАЦИЯ РАСПИСАНИЯ ===
-                
+
                 function animateSchedule() {
                     if (streamSchedule) {
                         const scheduleTitle = streamSchedule.querySelector('.schedule-title');
                         const scheduleTime = streamSchedule.querySelector('.schedule-time');
-                        
+
                         // Начальные стили
                         streamSchedule.style.opacity = '0';
                         streamSchedule.style.transform = 'translateY(30px)';
                         streamSchedule.style.transition = 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
-                        
+
                         if (scheduleTitle) {
                             scheduleTitle.style.opacity = '0';
                             scheduleTitle.style.transform = 'translateY(10px)';
                             scheduleTitle.style.transition = 'all 0.6s ease';
                         }
-                        
+
                         if (scheduleTime) {
                             scheduleTime.style.opacity = '0';
                             scheduleTime.style.transform = 'translateY(10px)';
                             scheduleTime.style.transition = 'all 0.6s ease';
                         }
-                        
+
                         // Анимация появления
                         setTimeout(() => {
                             streamSchedule.style.opacity = '1';
                             streamSchedule.style.transform = 'translateY(0)';
                         }, 800);
-                        
+
                         setTimeout(() => {
                             if (scheduleTitle) {
                                 scheduleTitle.style.opacity = '1';
                                 scheduleTitle.style.transform = 'translateY(0)';
                             }
                         }, 1000);
-                        
+
                         setTimeout(() => {
                             if (scheduleTime) {
                                 scheduleTime.style.opacity = '1';
@@ -1590,25 +1590,25 @@
                 }
 
                 animateSchedule();
-                
+
                 // === 4. ЭФФЕКТ МИГАНИЯ ВРЕМЕНИ ===
-                
+
                 function setupTimeAnimation() {
                     const scheduleTime = document.querySelector('.schedule-time');
                     if (scheduleTime) {
                         // Создаем эффект мигания
                         setInterval(() => {
                             scheduleTime.style.opacity = '0.7';
-                            
+
                             setTimeout(() => {
                                 scheduleTime.style.opacity = '1';
                             }, 300);
                         }, 2000);
-                        
+
                         // Эффект пульсации
                         setInterval(() => {
                             scheduleTime.style.transform = 'scale(1.05)';
-                            
+
                             setTimeout(() => {
                                 scheduleTime.style.transform = 'scale(1)';
                             }, 300);
@@ -1617,241 +1617,43 @@
                 }
 
                 setupTimeAnimation();
-                
+
                 // === 5. ИНТЕРАКТИВНЫЙ ЧАТ ===
-                
-                function createInteractiveChat() {
-                    // Создаем элемент чата
-                    const chatContainer = document.createElement('div');
-                    chatContainer.className = 'stream-chat';
-                    chatContainer.style.cssText = `
-                        position: absolute;
-                        top: 20px;
-                        right: 20px;
-                        width: 300px;
-                        height: 400px;
-                        background: rgba(0, 0, 0, 0.8);
-                        border-radius: 12px;
-                        overflow: hidden;
-                        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-                        backdrop-filter: blur(10px);
-                        z-index: 10;
-                        display: none;
-                    `;
-                    
-                    chatContainer.innerHTML = `
-                        <div style="
-                            padding: 1rem;
-                            background: rgba(74, 46, 31, 0.9);
-                            border-bottom: 1px solid rgba(212, 165, 116, 0.3);
-                            display: flex;
-                            justify-content: space-between;
-                            align-items: center;
-                        ">
-                            <span style="color: white; font-weight: 500;">Чат стрима</span>
-                            <button id="close-chat" style="
-                                background: none;
-                                border: none;
-                                color: white;
-                                cursor: pointer;
-                                font-size: 1.2rem;
-                            ">×</button>
-                        </div>
-                        <div id="chat-messages" style="
-                            height: 320px;
-                            overflow-y: auto;
-                            padding: 1rem;
-                        "></div>
-                        <div style="
-                            padding: 1rem;
-                            background: rgba(0, 0, 0, 0.9);
-                            border-top: 1px solid rgba(212, 165, 116, 0.2);
-                        ">
-                            <input type="text" id="chat-input" placeholder="Сообщение..." style="
-                                width: 70%;
-                                padding: 0.6rem;
-                                border: 1px solid rgba(212, 165, 116, 0.3);
-                                border-radius: 6px;
-                                background: rgba(255, 255, 255, 0.1);
-                                color: white;
-                            ">
-                            <button id="send-message" style="
-                                width: 25%;
-                                padding: 0.6rem;
-                                background: var(--accent);
-                                color: var(--primary);
-                                border: none;
-                                border-radius: 6px;
-                                cursor: pointer;
-                                margin-left: 5%;
-                            ">Отправить</button>
-                        </div>
-                    `;
-                    
-                    streamContainer.appendChild(chatContainer);
-                    
-                    // Кнопка для открытия чата
-                    const chatButton = document.createElement('button');
-                    chatButton.textContent = 'Чат';
-                    chatButton.style.cssText = `
-                        position: absolute;
-                        top: 20px;
-                        right: 20px;
-                        width: 60px;
-                        height: 60px;
-                        background: var(--accent);
-                        color: var(--primary);
-                        border: none;
-                        border-radius: 50%;
-                        font-size: 1.2rem;
-                        cursor: pointer;
-                        box-shadow: 0 5px 15px rgba(212, 165, 116, 0.3);
-                        z-index: 10;
-                        transition: all 0.3s ease;
-                    `;
-                    
-                    chatButton.addEventListener('mouseenter', function() {
-                        this.style.transform = 'scale(1.1)';
-                        this.style.boxShadow = '0 8px 25px rgba(212, 165, 116, 0.4)';
-                    });
 
-                    chatButton.addEventListener('mouseleave', function() {
-                        this.style.transform = 'scale(1)';
-                        this.style.boxShadow = '0 5px 15px rgba(212, 165, 116, 0.3)';
-                    });
-
-                    streamContainer.appendChild(chatButton);
-                    
-                    // Обработчики для чата
-                    const closeButton = chatContainer.querySelector('#close-chat');
-                    const messagesContainer = chatContainer.querySelector('#chat-messages');
-                    const messageInput = chatContainer.querySelector('#chat-input');
-                    const sendButton = chatContainer.querySelector('#send-message');
-                    
-                    // Открываем чат
-                    chatButton.addEventListener('click', function() {
-                        chatContainer.style.display = 'block';
-                        this.style.display = 'none';
-                    });
-                    
-                    // Закрываем чат
-                    closeButton.addEventListener('click', function() {
-                        chatContainer.style.display = 'none';
-                        chatButton.style.display = 'block';
-                    });
-                    
-                    // Отправка сообщения
-                    function sendMessage() {
-                        const message = messageInput.value.trim();
-                        if (message) {
-                            const messageElement = document.createElement('div');
-                            messageElement.style.cssText = `
-                                margin: 0.5rem 0;
-                                padding: 0.5rem;
-                                background: rgba(212, 165, 116, 0.2);
-                                border-radius: 6px;
-                                color: white;
-                                font-size: 0.9rem;
-                            `;
-                            messageElement.textContent = `Вы: ${message}`;
-                            
-                            messagesContainer.appendChild(messageElement);
-                            messageInput.value = '';
-                            
-                            // Авто-прокрутка
-                            messagesContainer.scrollTop = messagesContainer.scrollHeight;
-                            
-                            // Эмуляция ответа
-                            setTimeout(() => {
-                                const responseElement = document.createElement('div');
-                                responseElement.style.cssText = `
-                                    margin: 0.5rem 0;
-                                    padding: 0.5rem;
-                                    background: rgba(74, 46, 31, 0.3);
-                                    border-radius: 6px;
-                                    color: var(--accent);
-                                    font-size: 0.9rem;
-                                `;
-                                responseElement.textContent = `Sotik: Спасибо за сообщение!`;
-                                
-                                messagesContainer.appendChild(responseElement);
-                                messagesContainer.scrollTop = messagesContainer.scrollHeight;
-                            }, 1000);
-                        }
-                    }
-                    
-                    sendButton.addEventListener('click', sendMessage);
-                    messageInput.addEventListener('keypress', function(e) {
-                        if (e.key === 'Enter') {
-                            sendMessage();
-                        }
-                    });
-                    
-                    // Имитация активности в чате
-                    const fakeMessages = [
-                        'Привет всем! Как дела?',
-                        'Классный стрим, Sotik!',
-                        'Когда следующий стрим?',
-                        'Отличная игра!',
-                        'Подписался на канал',
-                        'Спасибо за развлечение!',
-                        'Как дела, Sotik?',
-                        'Отличный контент!',
-                        'Привет из Москвы!',
-                        'Смотрю каждый день'
-                    ];
-                    
-                    setInterval(() => {
-                        if (chatContainer.style.display === 'block') {
-                            const randomMessage = fakeMessages[Math.floor(Math.random() * fakeMessages.length)];
-                            const messageElement = document.createElement('div');
-                            messageElement.style.cssText = `
-                                margin: 0.5rem 0;
-                                padding: 0.5rem;
-                                background: rgba(74, 46, 31, 0.3);
-                                border-radius: 6px;
-                                color: var(--accent);
-                                font-size: 0.9rem;
-                            `;
-                            messageElement.textContent = `Зритель: ${randomMessage}`;
-                            
-                            messagesContainer.appendChild(messageElement);
-                            messagesContainer.scrollTop = messagesContainer.scrollHeight;
-                        }
-                    }, 8000);
-                }
+                // Чат был удален по запросу пользователя
+                // Твич имеет собственный чат, поэтому встраиваемый чат не нужен
 
                 createInteractiveChat();
-                
+
                 // === 6. АНИМАЦИЯ ФОНА СЕКЦИИ ===
-                
+
                 function animateStreamBackground() {
                     let hue = 0;
                     setInterval(() => {
                         hue = (hue + 0.3) % 360;
-                        streamSection.style.background = `linear-gradient(135deg, 
-                            hsl(${hue}, 30%, 95%) 0%, 
+                        streamSection.style.background = `linear-gradient(135deg,
+                            hsl(${hue}, 30%, 95%) 0%,
                             hsl(${(hue + 45) % 360}, 30%, 90%) 100%
                         )`;
                     }, 100);
                 }
 
                 animateStreamBackground();
-                
+
                 // === 7. ЭФФЕКТ ПАРАЛЛАКСА ===
-                
+
                 function setupParallaxEffect() {
                     streamContainer.addEventListener('mousemove', function(e) {
                         const rect = this.getBoundingClientRect();
                         const x = e.clientX - rect.left;
                         const y = e.clientY - rect.top;
-                        
+
                         const centerX = rect.width / 2;
                         const centerY = rect.height / 2;
-                        
+
                         const moveX = (x - centerX) / 100;
                         const moveY = (y - centerY) / 100;
-                        
+
                         streamEmbed.style.transform = `translate(${moveX}px, ${moveY}px)`;
                         streamSchedule.style.transform = `translate(${-moveX}px, ${-moveY}px)`;
                     });
@@ -1863,25 +1665,25 @@
                 }
 
                 setupParallaxEffect();
-                
+
                 // === 8. АНИМАЦИЯ ЗАГОЛОВКА ===
-                
+
                 function animateTitleEffect() {
                     const title = document.querySelector('.stream-title');
                     if (title) {
                         // Создаем эффект мерцания
                         setInterval(() => {
                             title.style.textShadow = '0 0 20px rgba(212, 165, 116, 0.8)';
-                            
+
                             setTimeout(() => {
                                 title.style.textShadow = 'none';
                             }, 300);
                         }, 4000);
-                        
+
                         // Эффект пульсации
                         setInterval(() => {
                             title.style.transform = 'scale(1.03)';
-                            
+
                             setTimeout(() => {
                                 title.style.transform = 'scale(1)';
                             }, 300);
@@ -1890,9 +1692,9 @@
                 }
 
                 animateTitleEffect();
-                
+
                 // === 9. СОЗДАНИЕ ЭФФЕКТОВ ДЛЯ СТРИМА ===
-                
+
                 function createStreamEffects() {
                     // Создаем частицы
                     const particlesContainer = document.createElement('div');
@@ -1907,7 +1709,7 @@
                         z-index: -1;
                         overflow: hidden;
                     `;
-                    
+
                     // Создаем 15 частиц
                     for (let i = 0; i < 15; i++) {
                         const particle = document.createElement('div');
@@ -1916,7 +1718,7 @@
                         const posY = Math.random() * 100;
                         const delay = Math.random() * 5;
                         const duration = Math.random() * 4 + 3;
-                        
+
                         particle.style.cssText = `
                             position: absolute;
                             width: ${size}px;
@@ -1928,13 +1730,13 @@
                             opacity: 0;
                             animation: stream-particle ${duration}s infinite ${delay}s ease-in-out;
                         `;
-                        
+
                         particlesContainer.appendChild(particle);
                     }
-                    
+
                     streamSection.style.position = 'relative';
                     streamSection.appendChild(particlesContainer);
-                    
+
                     // Добавляем CSS для анимации частиц
                     const style = document.createElement('style');
                     style.textContent = `@keyframes stream-particle {
@@ -1943,12 +1745,12 @@
                         100% { transform: translateY(-30px) rotate(360deg); opacity: 0; }
                     }`;
                     document.head.appendChild(style);
-                    
+
                     // Эффект для рамки эмбеда
                     setInterval(() => {
                         if (streamEmbed) {
                             streamEmbed.style.borderImage = 'linear-gradient(45deg, var(--accent), #e6b88d, var(--accent)) 1';
-                            
+
                             setTimeout(() => {
                                 streamEmbed.style.borderImage = 'none';
                             }, 500);
@@ -1957,9 +1759,9 @@
                 }
 
                 createStreamEffects();
-                
+
                 // === 10. АДАПТИВНЫЕ ЭФФЕКТЫ ===
-                
+
                 function handleResponsiveEffects() {
                     function updateStyles() {
                         if (window.innerWidth < 768) {
@@ -1968,7 +1770,7 @@
                                 streamEmbed.style.transform = 'scale(1)';
                                 streamEmbed.style.transition = 'all 0.3s ease';
                             }
-                            
+
                             // Отключаем параллакс на мобильных
                             streamContainer.removeEventListener('mousemove', null);
                         } else {
@@ -2019,8 +1821,8 @@
 
             .stream-embed {
                 width: 100%;
-                max-width: 900px;
-                height: 500px;
+                max-width: 1200px;
+                height: 600px;
                 border-radius: 16px;
                 overflow: hidden;
                 box-shadow: 0 15px 40px rgba(0, 0, 0, 0.18);
@@ -2109,9 +1911,9 @@
                 const memberNames = document.querySelectorAll('.member-name');
                 const memberRoles = document.querySelectorAll('.member-role');
                 const memberSocials = document.querySelectorAll('.member-social');
-                
+
                 // === 1. АНИМАЦИЯ ПОЯВЛЕНИЯ ЧЛЕНОВ КОМАНДЫ ===
-                
+
                 function animateTeamMembers() {
                     // Устанавливаем начальные стили для анимации
                     teamMembers.forEach(member => {
@@ -2130,22 +1932,22 @@
                 }
 
                 animateTeamMembers();
-                
+
                 // === 2. ИНТЕРАКТИВНЫЙ ЭФФЕКТ ДЛЯ АВАТАРОВ ===
-                
+
                 function setupAvatarInteractions() {
                     memberAvatars.forEach((avatar, index) => {
                         // Начальные стили
                         avatar.style.transition = 'all 0.4s ease';
                         avatar.style.boxShadow = '0 8px 20px rgba(0, 0, 0, 0.15)';
-                        
+
                         // Эффект при наведении
                         avatar.addEventListener('mouseenter', function() {
                             // Увеличение аватара
                             this.style.transform = 'scale(1.1)';
                             this.style.boxShadow = '0 15px 35px rgba(212, 165, 116, 0.4)';
                             this.style.border = '5px solid var(--accent)';
-                            
+
                             // Эффект для родительского элемента
                             const member = this.closest('.team-member');
                             if (member) {
@@ -2158,7 +1960,7 @@
                             this.style.transform = 'scale(1)';
                             this.style.boxShadow = '0 8px 20px rgba(0, 0, 0, 0.15)';
                             this.style.border = '5px solid var(--accent)';
-                            
+
                             // Возвращаем родительский элемент
                             const member = this.closest('.team-member');
                             if (member) {
@@ -2182,11 +1984,11 @@
                                 animation: ripple 0.8s linear;
                                 z-index: 1;
                             `;
-                            
+
                             this.style.position = 'relative';
                             this.style.overflow = 'hidden';
                             this.appendChild(ripple);
-                            
+
                             // Удаляем эффект волны после анимации
                             setTimeout(() => {
                                 if (ripple.parentElement) {
@@ -2198,16 +2000,16 @@
                 }
 
                 setupAvatarInteractions();
-                
+
                 // === 3. АНИМАЦИЯ ИМЁН И РОЛЕЙ ===
-                
+
                 function animateNamesAndRoles() {
                     // Анимация имен
                     memberNames.forEach((name, index) => {
                         name.style.opacity = '0';
                         name.style.transform = 'translateY(10px)';
                         name.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
-                        
+
                         setTimeout(() => {
                             name.style.opacity = '1';
                             name.style.transform = 'translateY(0)';
@@ -2219,7 +2021,7 @@
                         role.style.opacity = '0';
                         role.style.transform = 'translateY(10px)';
                         role.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
-                        
+
                         setTimeout(() => {
                             role.style.opacity = '1';
                             role.style.transform = 'translateY(0)';
@@ -2228,20 +2030,20 @@
                 }
 
                 animateNamesAndRoles();
-                
+
                 // === 4. ИНТЕРАКТИВНЫЕ СОЦСЕТИ ===
-                
+
                 function setupSocialInteractions() {
                     memberSocials.forEach((social, memberIndex) => {
                         const socialLinks = social.querySelectorAll('.social-link');
-                        
+
                         socialLinks.forEach((link, linkIndex) => {
                             // Эффект при наведении
                             link.addEventListener('mouseenter', function() {
                                 // Изменение цвета и позиции
                                 this.style.background = 'var(--accent)';
                                 this.style.transform = 'translateY(-8px) scale(1.1)';
-                                
+
                                 // Эффект для иконки
                                 this.style.boxShadow = '0 8px 25px rgba(212, 165, 116, 0.4)';
                             });
@@ -2256,10 +2058,10 @@
                             // Эффект при клике
                             link.addEventListener('click', function(e) {
                                 e.preventDefault();
-                                
+
                                 // Создаем эффект масштабирования
                                 this.style.transform = 'scale(1.3)';
-                                
+
                                 setTimeout(() => {
                                     this.style.transform = 'translateY(0) scale(1)';
                                 }, 300);
@@ -2269,16 +2071,16 @@
                 }
 
                 setupSocialInteractions();
-                
+
                 // === 5. АНИМАЦИЯ ЗАГОЛОВКА СЕКЦИИ ===
-                
+
                 function animateSectionTitle() {
                     const title = document.querySelector('.team-title');
                     if (title) {
                         title.style.opacity = '0';
                         title.style.transform = 'translateY(30px)';
                         title.style.transition = 'all 1s cubic-bezier(0.4, 0, 0.2, 1)';
-                        
+
                         setTimeout(() => {
                             title.style.opacity = '1';
                             title.style.transform = 'translateY(0)';
@@ -2287,9 +2089,9 @@
                 }
 
                 animateSectionTitle();
-                
+
                 // === 6. КАРУСЕЛЬ ДЛЯ КОМАНДЫ ===
-                
+
                 function setupTeamCarousel() {
                     // Создаем элементы карусели
                     const carouselContainer = document.createElement('div');
@@ -2302,7 +2104,7 @@
                         border-radius: 16px;
                         box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
                     `;
-                    
+
                     const carouselInner = document.createElement('div');
                     carouselInner.className = 'carousel-inner';
                     carouselInner.style.cssText = `
@@ -2310,16 +2112,16 @@
                         transition: transform 0.5s ease;
                         width: ${teamMembers.length * 100}%;
                     `;
-                    
+
                     // Клонируем членов команды для карусели
                     teamMembers.forEach(member => {
                         const clone = member.cloneNode(true);
                         clone.style.width = `${100 / teamMembers.length}%`;
                         carouselInner.appendChild(clone);
                     });
-                    
+
                     carouselContainer.appendChild(carouselInner);
-                    
+
                     // Создаем кнопки управления
                     const prevButton = document.createElement('button');
                     prevButton.innerHTML = '&lt;';
@@ -2339,7 +2141,7 @@
                         z-index: 10;
                         transition: all 0.3s ease;
                     `;
-                    
+
                     const nextButton = document.createElement('button');
                     nextButton.innerHTML = '&gt;';
                     nextButton.style.cssText = `
@@ -2358,32 +2160,32 @@
                         z-index: 10;
                         transition: all 0.3s ease;
                     `;
-                    
+
                     carouselContainer.appendChild(prevButton);
                     carouselContainer.appendChild(nextButton);
-                    
+
                     // Добавляем карусель в контейнер
                     teamContainer.insertBefore(carouselContainer, teamGrid);
-                    
+
                     // Логика карусели
                     let currentIndex = 0;
                     const totalItems = teamMembers.length;
-                    
+
                     function updateCarousel() {
                         carouselInner.style.transform = `translateX(-${currentIndex * (100 / totalItems)}%)`;
                     }
-                    
+
                     // Обработчики кнопок
                     prevButton.addEventListener('click', () => {
                         currentIndex = (currentIndex - 1 + totalItems) % totalItems;
                         updateCarousel();
                     });
-                    
+
                     nextButton.addEventListener('click', () => {
                         currentIndex = (currentIndex + 1) % totalItems;
                         updateCarousel();
                     });
-                    
+
                     // Автоматическая прокрутка
                     setInterval(() => {
                         currentIndex = (currentIndex + 1) % totalItems;
@@ -2392,15 +2194,15 @@
                 }
 
                 setupTeamCarousel();
-                
+
                 // === 7. ЭФФЕКТ ТЕНИ И ГРАДИЕНТА ===
-                
+
                 function setupGradientEffect() {
                     teamMembers.forEach((member, index) => {
                         const avatar = member.querySelector('.member-avatar');
                         const name = member.querySelector('.member-name');
                         const role = member.querySelector('.member-role');
-                        
+
                         // Создаем градиентную обводку
                         const gradientBorder = document.createElement('div');
                         gradientBorder.style.cssText = `
@@ -2415,11 +2217,11 @@
                             opacity: 0;
                             transition: opacity 0.3s ease;
                         `;
-                        
+
                         if (avatar) {
                             avatar.style.position = 'relative';
                             avatar.parentNode.insertBefore(gradientBorder, avatar);
-                            
+
                             // Эффект при наведении
                             avatar.addEventListener('mouseenter', function() {
                                 gradientBorder.style.opacity = '1';
@@ -2433,9 +2235,9 @@
                 }
 
                 setupGradientEffect();
-                
+
                 // === 8. АНИМАЦИЯ ПРИ ПРОКРУТКЕ ===
-                
+
                 function setupScrollAnimation() {
                     const observer = new IntersectionObserver((entries) => {
                         entries.forEach(entry => {
@@ -2447,13 +2249,13 @@
                                     title.style.opacity = '0';
                                     title.style.transform = 'translateY(30px)';
                                     title.style.transition = 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
-                                    
+
                                     setTimeout(() => {
                                         title.style.opacity = '1';
                                         title.style.transform = 'translateY(0)';
                                     }, 100);
                                 }
-                                
+
                                 // Анимация членов команды
                                 const members = entry.target.querySelectorAll('.team-member');
                                 members.forEach((member, index) => {
@@ -2462,14 +2264,14 @@
                                         member.style.opacity = '0';
                                         member.style.transform = 'translateY(40px)';
                                         member.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
-                                        
+
                                         setTimeout(() => {
                                             member.style.opacity = '1';
                                             member.style.transform = 'translateY(0)';
                                         }, 200 + (index * 150));
                                     }
                                 });
-                                
+
                                 // Останавливаем наблюдение после анимации
                                 observer.unobserve(entry.target);
                             }
@@ -2478,27 +2280,27 @@
                         threshold: 0.1,
                         rootMargin: '0px 0px -100px 0px'
                     });
-                    
+
                     observer.observe(teamSection);
                 }
 
                 setupScrollAnimation();
-                
+
                 // === 9. ЭФФЕКТ МАГНИТА ДЛЯ КУРСОРА ===
-                
+
                 function setupMagneticEffect() {
                     teamMembers.forEach(member => {
                         member.addEventListener('mousemove', function(e) {
                             const rect = this.getBoundingClientRect();
                             const x = e.clientX - rect.left;
                             const y = e.clientY - rect.top;
-                            
+
                             const centerX = rect.width / 2;
                             const centerY = rect.height / 2;
-                            
+
                             const moveX = (x - centerX) / 15;
                             const moveY = (y - centerY) / 15;
-                            
+
                             this.style.transform = `translateY(${moveY}px) translateX(${moveX}px) scale(1.03)`;
                         });
 
@@ -2509,9 +2311,9 @@
                 }
 
                 setupMagneticEffect();
-                
+
                 // === 10. СОЗДАНИЕ ДОПОЛНИТЕЛЬНЫХ ЭФФЕКТОВ ===
-                
+
                 function createAdditionalEffects() {
                     // Добавляем частицы вокруг секции
                     const particles = document.createElement('div');
@@ -2526,7 +2328,7 @@
                         z-index: -1;
                         overflow: hidden;
                     `;
-                    
+
                     // Создаем 25 частиц
                     for (let i = 0; i < 25; i++) {
                         const particle = document.createElement('div');
@@ -2535,7 +2337,7 @@
                         const posY = Math.random() * 100;
                         const delay = Math.random() * 5;
                         const duration = Math.random() * 4 + 2;
-                        
+
                         particle.style.cssText = `
                             position: absolute;
                             width: ${size}px;
@@ -2547,13 +2349,13 @@
                             opacity: 0;
                             animation: team-particle ${duration}s infinite ${delay}s ease-in-out;
                         `;
-                        
+
                         particles.appendChild(particle);
                     }
-                    
+
                     teamSection.style.position = 'relative';
                     teamSection.appendChild(particles);
-                    
+
                     // Добавляем CSS для анимации частиц
                     const style = document.createElement('style');
                     style.textContent = `@keyframes team-particle {
@@ -2562,26 +2364,26 @@
                         100% { transform: translateY(-25px) rotate(360deg); opacity: 0; }
                     }`;
                     document.head.appendChild(style);
-                    
+
                     // Анимация фона секции
                     let hue = 0;
                     setInterval(() => {
                         hue = (hue + 0.4) % 360;
-                        teamSection.style.background = `linear-gradient(135deg, 
-                            hsl(${hue}, 25%, 95%) 0%, 
+                        teamSection.style.background = `linear-gradient(135deg,
+                            hsl(${hue}, 25%, 95%) 0%,
                             hsl(${(hue + 35) % 360}, 25%, 90%) 100%
                         )`;
                     }, 100);
                 }
 
                 createAdditionalEffects();
-                
+
                 // === 11. АНИМАЦИЯ ИКОНОК СОЦСЕТЕЙ ===
-                
+
                 function animateSocialIcons() {
                     memberSocials.forEach((social, memberIndex) => {
                         const socialLinks = social.querySelectorAll('.social-link');
-                        
+
                         socialLinks.forEach((link, linkIndex) => {
                             // Создаем анимацию для иконок
                             link.innerHTML = `<span style="
@@ -2590,7 +2392,7 @@
                             ">${link.textContent}</span>`;
                         });
                     });
-                    
+
                     // Добавляем CSS анимации
                     const style = document.createElement('style');
                     style.textContent = `@keyframes bounce {
@@ -2601,9 +2403,9 @@
                 }
 
                 animateSocialIcons();
-                
+
                 // === 12. ЭФФЕКТ ПОДСВЕТКИ АКТИВНОГО ЧЛЕНА КОМАНДЫ ===
-                
+
                 function setupHighlightEffect() {
                     teamMembers.forEach((member, index) => {
                         member.addEventListener('click', function() {
@@ -2615,7 +2417,7 @@
                                     avatar.style.filter = 'none';
                                 }
                             });
-                            
+
                             // Выделяем текущего члена
                             this.style.boxShadow = '0 0 30px rgba(212, 165, 116, 0.4)';
                             const avatar = this.querySelector('.member-avatar');
@@ -2791,9 +2593,9 @@
                 const partnersContainer = document.querySelector('.partners-container');
                 const partnersLogos = document.querySelector('.partners-logos');
                 const partnerLogos = document.querySelectorAll('.partner-logo');
-                
+
                 // === 1. АНИМАЦИЯ ПОЯВЛЕНИЯ ЛОГОТИПОВ ===
-                
+
                 function animatePartnerLogos() {
                     // Устанавливаем начальные стили для анимации
                     partnerLogos.forEach(logo => {
@@ -2812,22 +2614,22 @@
                 }
 
                 animatePartnerLogos();
-                
+
                 // === 2. ИНТЕРАКТИВНЫЙ ЭФФЕКТ ДЛЯ ЛОГОТИПОВ ===
-                
+
                 function setupLogoInteractions() {
                     partnerLogos.forEach((logo, index) => {
                         // Начальные стили
                         logo.style.transition = 'all 0.4s ease';
                         logo.style.filter = 'grayscale(100%)';
-                        
+
                         // Эффект при наведении
                         logo.addEventListener('mouseenter', function() {
                             // Увеличение и цвет
                             this.style.opacity = '1';
                             this.style.filter = 'grayscale(0%)';
                             this.style.transform = 'scale(1.15)';
-                            
+
                             // Эффект тени
                             this.style.boxShadow = '0 10px 30px rgba(212, 165, 116, 0.4)';
                         });
@@ -2856,11 +2658,11 @@
                                 animation: ripple 0.8s linear;
                                 z-index: 1;
                             `;
-                            
+
                             this.style.position = 'relative';
                             this.style.overflow = 'hidden';
                             this.appendChild(ripple);
-                            
+
                             // Удаляем эффект волны после анимации
                             setTimeout(() => {
                                 if (ripple.parentElement) {
@@ -2872,16 +2674,16 @@
                 }
 
                 setupLogoInteractions();
-                
+
                 // === 3. АНИМАЦИЯ ЗАГОЛОВКА СЕКЦИИ ===
-                
+
                 function animateSectionTitle() {
                     const title = document.querySelector('.partners-title');
                     if (title) {
                         title.style.opacity = '0';
                         title.style.transform = 'translateY(30px)';
                         title.style.transition = 'all 1s cubic-bezier(0.4, 0, 0.2, 1)';
-                        
+
                         setTimeout(() => {
                             title.style.opacity = '1';
                             title.style.transform = 'translateY(0)';
@@ -2890,9 +2692,9 @@
                 }
 
                 animateSectionTitle();
-                
+
                 // === 4. КАРУСЕЛЬ ДЛЯ ЛОГОТИПОВ ===
-                
+
                 function setupLogoCarousel() {
                     // Создаем элементы карусели
                     const carouselContainer = document.createElement('div');
@@ -2905,7 +2707,7 @@
                         border-radius: 12px;
                         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
                     `;
-                    
+
                     const carouselInner = document.createElement('div');
                     carouselInner.className = 'carousel-inner';
                     carouselInner.style.cssText = `
@@ -2913,7 +2715,7 @@
                         transition: transform 0.5s ease;
                         width: ${partnerLogos.length * 100}%;
                     `;
-                    
+
                     // Клонируем логотипы для карусели
                     partnerLogos.forEach(logo => {
                         const clone = logo.cloneNode(true);
@@ -2922,9 +2724,9 @@
                         clone.style.maxHeight = '100px';
                         carouselInner.appendChild(clone);
                     });
-                    
+
                     carouselContainer.appendChild(carouselInner);
-                    
+
                     // Создаем кнопки управления
                     const prevButton = document.createElement('button');
                     prevButton.innerHTML = '&lt;';
@@ -2944,7 +2746,7 @@
                         z-index: 10;
                         transition: all 0.3s ease;
                     `;
-                    
+
                     const nextButton = document.createElement('button');
                     nextButton.innerHTML = '&gt;';
                     nextButton.style.cssText = `
@@ -2963,32 +2765,32 @@
                         z-index: 10;
                         transition: all 0.3s ease;
                     `;
-                    
+
                     carouselContainer.appendChild(prevButton);
                     carouselContainer.appendChild(nextButton);
-                    
+
                     // Добавляем карусель в контейнер
                     partnersContainer.insertBefore(carouselContainer, partnersLogos);
-                    
+
                     // Логика карусели
                     let currentIndex = 0;
                     const totalItems = partnerLogos.length;
-                    
+
                     function updateCarousel() {
                         carouselInner.style.transform = `translateX(-${currentIndex * (100 / totalItems)}%)`;
                     }
-                    
+
                     // Обработчики кнопок
                     prevButton.addEventListener('click', () => {
                         currentIndex = (currentIndex - 1 + totalItems) % totalItems;
                         updateCarousel();
                     });
-                    
+
                     nextButton.addEventListener('click', () => {
                         currentIndex = (currentIndex + 1) % totalItems;
                         updateCarousel();
                     });
-                    
+
                     // Автоматическая прокрутка
                     setInterval(() => {
                         currentIndex = (currentIndex + 1) % totalItems;
@@ -2997,9 +2799,9 @@
                 }
 
                 setupLogoCarousel();
-                
+
                 // === 5. МАШИНА ВРЕМЕНИ ДЛЯ ЛОГОТИПОВ ===
-                
+
                 function setupTimeMachine() {
                     // Создаем контейнер для машины времени
                     const timeMachine = document.createElement('div');
@@ -3014,7 +2816,7 @@
                         background: linear-gradient(45deg, #4A2E1F, #664A3E);
                         box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
                     `;
-                    
+
                     // Создаем ленту с логотипами
                     const timeMachineTape = document.createElement('div');
                     timeMachineTape.className = 'time-machine-tape';
@@ -3024,7 +2826,7 @@
                         white-space: nowrap;
                         animation: scroll ${20 + partnerLogos.length * 2}s linear infinite;
                     `;
-                    
+
                     // Дублируем логотипы для бесконечной прокрутки
                     for (let i = 0; i < 3; i++) {
                         partnerLogos.forEach(logo => {
@@ -3037,10 +2839,10 @@
                             timeMachineTape.appendChild(clone);
                         });
                     }
-                    
+
                     timeMachine.appendChild(timeMachineTape);
                     partnersContainer.appendChild(timeMachine);
-                    
+
                     // Добавляем CSS для анимации
                     const style = document.createElement('style');
                     style.textContent = `@keyframes scroll {
@@ -3048,7 +2850,7 @@
                         100% { transform: translateX(-${timeMachineTape.scrollWidth / 3}px); }
                     }`;
                     document.head.appendChild(style);
-                    
+
                     // Эффект при наведении
                     timeMachine.addEventListener('mouseenter', function() {
                         timeMachineTape.style.animationPlayState = 'paused';
@@ -3062,9 +2864,9 @@
                 }
 
                 setupTimeMachine();
-                
+
                 // === 6. АНИМАЦИЯ ПРИ ПРОКРУТКЕ ===
-                
+
                 function setupScrollAnimation() {
                     const observer = new IntersectionObserver((entries) => {
                         entries.forEach(entry => {
@@ -3076,13 +2878,13 @@
                                     title.style.opacity = '0';
                                     title.style.transform = 'translateY(30px)';
                                     title.style.transition = 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
-                                    
+
                                     setTimeout(() => {
                                         title.style.opacity = '1';
                                         title.style.transform = 'translateY(0)';
                                     }, 100);
                                 }
-                                
+
                                 // Анимация логотипов
                                 const logos = entry.target.querySelectorAll('.partner-logo');
                                 logos.forEach((logo, index) => {
@@ -3091,14 +2893,14 @@
                                         logo.style.opacity = '0';
                                         logo.style.transform = 'scale(0.8)';
                                         logo.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
-                                        
+
                                         setTimeout(() => {
                                             logo.style.opacity = '0.7';
                                             logo.style.transform = 'scale(1)';
                                         }, 200 + (index * 100));
                                     }
                                 });
-                                
+
                                 // Останавливаем наблюдение после анимации
                                 observer.unobserve(entry.target);
                             }
@@ -3107,27 +2909,27 @@
                         threshold: 0.1,
                         rootMargin: '0px 0px -100px 0px'
                     });
-                    
+
                     observer.observe(partnersSection);
                 }
 
                 setupScrollAnimation();
-                
+
                 // === 7. ЭФФЕКТ МАГНИТА ДЛЯ КУРСОРА ===
-                
+
                 function setupMagneticEffect() {
                     partnerLogos.forEach(logo => {
                         logo.addEventListener('mousemove', function(e) {
                             const rect = this.getBoundingClientRect();
                             const x = e.clientX - rect.left;
                             const y = e.clientY - rect.top;
-                            
+
                             const centerX = rect.width / 2;
                             const centerY = rect.height / 2;
-                            
+
                             const moveX = (x - centerX) / 20;
                             const moveY = (y - centerY) / 20;
-                            
+
                             this.style.transform = `translateY(${moveY}px) translateX(${moveX}px) scale(1.1)`;
                         });
 
@@ -3138,9 +2940,9 @@
                 }
 
                 setupMagneticEffect();
-                
+
                 // === 8. СОЗДАНИЕ ДОПОЛНИТЕЛЬНЫХ ЭФФЕКТОВ ===
-                
+
                 function createAdditionalEffects() {
                     // Добавляем частицы вокруг секции
                     const particles = document.createElement('div');
@@ -3155,7 +2957,7 @@
                         z-index: -1;
                         overflow: hidden;
                     `;
-                    
+
                     // Создаем 30 частиц
                     for (let i = 0; i < 30; i++) {
                         const particle = document.createElement('div');
@@ -3164,7 +2966,7 @@
                         const posY = Math.random() * 100;
                         const delay = Math.random() * 5;
                         const duration = Math.random() * 5 + 3;
-                        
+
                         particle.style.cssText = `
                             position: absolute;
                             width: ${size}px;
@@ -3176,13 +2978,13 @@
                             opacity: 0;
                             animation: partners-particle ${duration}s infinite ${delay}s ease-in-out;
                         `;
-                        
+
                         particles.appendChild(particle);
                     }
-                    
+
                     partnersSection.style.position = 'relative';
                     partnersSection.appendChild(particles);
-                    
+
                     // Добавляем CSS для анимации частиц
                     const style = document.createElement('style');
                     style.textContent = `@keyframes partners-particle {
@@ -3191,22 +2993,22 @@
                         100% { transform: translateY(-35px) rotate(360deg); opacity: 0; }
                     }`;
                     document.head.appendChild(style);
-                    
+
                     // Анимация фона секции
                     let hue = 0;
                     setInterval(() => {
                         hue = (hue + 0.5) % 360;
-                        partnersSection.style.background = `linear-gradient(135deg, 
-                            hsl(${hue}, 30%, 95%) 0%, 
+                        partnersSection.style.background = `linear-gradient(135deg,
+                            hsl(${hue}, 30%, 95%) 0%,
                             hsl(${(hue + 45) % 360}, 30%, 90%) 100%
                         )`;
                     }, 100);
                 }
 
                 createAdditionalEffects();
-                
+
                 // === 9. ЭФФЕКТ ПАЗЗЛА ===
-                
+
                 function setupPuzzleEffect() {
                     // Создаем контейнер для паззла
                     const puzzleContainer = document.createElement('div');
@@ -3220,11 +3022,11 @@
                         overflow: hidden;
                         box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
                     `;
-                    
+
                     // Создаем ячейки паззла
                     const rows = 2;
                     const cols = 5;
-                    
+
                     for (let i = 0; i < rows; i++) {
                         for (let j = 0; j < cols; j++) {
                             const cell = document.createElement('div');
@@ -3243,7 +3045,7 @@
                                 cursor: pointer;
                                 transition: all 0.3s ease;
                             `;
-                            
+
                             // Добавляем логотип в случайную ячейку
                             if (Math.random() > 0.7) {
                                 const randomLogo = partnerLogos[Math.floor(Math.random() * partnerLogos.length)];
@@ -3252,7 +3054,7 @@
                                 logoClone.style.opacity = '0.9';
                                 cell.appendChild(logoClone);
                             }
-                            
+
                             // Эффекты для ячеек
                             cell.addEventListener('mouseenter', function() {
                                 this.style.background = 'rgba(212, 165, 116, 0.2)';
@@ -3269,29 +3071,29 @@
                             cell.addEventListener('click', function() {
                                 this.style.background = 'rgba(212, 165, 116, 0.4)';
                                 this.style.transform = 'scale(1.1) rotate(5deg)';
-                                
+
                                 setTimeout(() => {
                                     this.style.transform = 'scale(1) rotate(0deg)';
                                 }, 300);
                             });
-                            
+
                             puzzleContainer.appendChild(cell);
                         }
                     }
-                    
+
                     partnersContainer.appendChild(puzzleContainer);
                 }
 
                 setupPuzzleEffect();
-                
+
                 // === 10. АНИМАЦИЯ ИКОНОК ===
-                
+
                 function animateLogos() {
                     partnerLogos.forEach((logo, index) => {
                         // Создаем анимацию для логотипов
                         logo.style.animation = `float ${3 + index * 0.5}s infinite ${index * 0.3}s ease-in-out`;
                     });
-                    
+
                     // Добавляем CSS для анимации
                     const style = document.createElement('style');
                     style.textContent = `@keyframes float {
@@ -3302,9 +3104,9 @@
                 }
 
                 animateLogos();
-                
+
                 // === 11. ЭФФЕКТ ПОДСВЕТКИ ПРИ НАВЕДЕНИИ ===
-                
+
                 function setupHighlightEffect() {
                     partnerLogos.forEach((logo, index) => {
                         logo.addEventListener('mouseenter', function() {
@@ -3321,10 +3123,10 @@
                                 z-index: -1;
                                 animation: highlight 2s infinite;
                             `;
-                            
+
                             this.style.position = 'relative';
                             this.appendChild(highlight);
-                            
+
                             // Удаляем предыдущий эффект при уходе
                             this.addEventListener('mouseleave', function() {
                                 if (highlight.parentElement) {
@@ -3333,7 +3135,7 @@
                             }, { once: true });
                         });
                     });
-                    
+
                     // Добавляем CSS для анимации подсветки
                     const style = document.createElement('style');
                     style.textContent = `@keyframes highlight {
@@ -3344,9 +3146,9 @@
                 }
 
                 setupHighlightEffect();
-                
+
                 // === 12. АДАПТИВНЫЕ ЭФФЕКТЫ ===
-                
+
                 function handleResponsiveEffects() {
                     function updateStyles() {
                         if (window.innerWidth < 768) {
@@ -3455,9 +3257,9 @@
                 const donateAmounts = document.querySelectorAll('.donate-amount');
                 const donateBenefits = document.querySelectorAll('.donate-benefit');
                 const donateCta = document.querySelector('.donate-cta');
-                
+
                 // === 1. АНИМАЦИЯ ПОЯВЛЕНИЯ КАРТОЧЕК ===
-                
+
                 function animateDonateCards() {
                     // Устанавливаем начальные стили для анимации
                     donateCards.forEach(card => {
@@ -3476,26 +3278,26 @@
                 }
 
                 animateDonateCards();
-                
+
                 // === 2. ИНТЕРАКТИВНЫЙ ЭФФЕКТ ДЛЯ КАРТОЧЕК ===
-                
+
                 function setupCardInteractions() {
                     donateCards.forEach((card, index) => {
                         const amount = card.querySelector('.donate-amount');
                         const benefit = card.querySelector('.donate-benefit');
-                        
+
                         // Эффект при наведении
                         card.addEventListener('mouseenter', function() {
                             // Увеличение карточки
                             this.style.transform = 'translateY(-15px) scale(1.05)';
                             this.style.boxShadow = '0 20px 50px rgba(74, 46, 31, 0.4)';
-                            
+
                             // Эффект для суммы
                             if (amount) {
                                 amount.style.transform = 'scale(1.1)';
                                 amount.style.textShadow = '0 0 20px rgba(255, 255, 255, 0.5)';
                             }
-                            
+
                             // Появление дополнительной информации
                             setTimeout(() => {
                                 if (benefit) {
@@ -3509,12 +3311,12 @@
                             // Возвращаем оригинальные стили
                             this.style.transform = 'translateY(0) scale(1)';
                             this.style.boxShadow = '0 10px 30px rgba(74, 46, 31, 0.2)';
-                            
+
                             if (amount) {
                                 amount.style.transform = 'scale(1)';
                                 amount.style.textShadow = 'none';
                             }
-                            
+
                             if (benefit) {
                                 benefit.style.opacity = '0.9';
                                 benefit.style.transform = 'translateY(2px)';
@@ -3539,11 +3341,11 @@
                                     animation: ripple 0.8s linear;
                                     z-index: 1;
                                 `;
-                                
+
                                 this.style.position = 'relative';
                                 this.style.overflow = 'hidden';
                                 this.appendChild(ripple);
-                                
+
                                 // Удаляем эффект волны после анимации
                                 setTimeout(() => {
                                     if (ripple.parentElement) {
@@ -3556,15 +3358,15 @@
                 }
 
                 setupCardInteractions();
-                
+
                 // === 3. АНИМАЦИЯ СУММ ===
-                
+
                 function animateAmounts() {
                     donateAmounts.forEach((amount, index) => {
                         amount.style.opacity = '0';
                         amount.style.transform = 'scale(0.8)';
                         amount.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
-                        
+
                         setTimeout(() => {
                             amount.style.opacity = '1';
                             amount.style.transform = 'scale(1)';
@@ -3573,19 +3375,19 @@
                 }
 
                 animateAmounts();
-                
+
                 // === 4. ИНТЕРАКТИВНАЯ КНОПКА CTA ===
-                
+
                 function setupCtaInteraction() {
                     if (donateCta) {
                         let originalText = donateCta.textContent;
                         let glowInterval;
-                        
+
                         donateCta.addEventListener('mouseenter', function() {
                             // Увеличение и тень
                             this.style.transform = 'translateY(-6px) scale(1.08)';
                             this.style.boxShadow = '0 15px 40px rgba(212, 165, 116, 0.5)';
-                            
+
                             // Эффект свечения
                             glowInterval = setInterval(() => {
                                 const currentBoxShadow = this.style.boxShadow;
@@ -3601,7 +3403,7 @@
                             // Возвращаем оригинальные стили
                             this.style.transform = 'translateY(0) scale(1)';
                             this.style.boxShadow = '0 6px 20px rgba(212, 165, 116, 0.3)';
-                            
+
                             // Останавливаем мерцание
                             if (glowInterval) {
                                 clearInterval(glowInterval);
@@ -3613,7 +3415,7 @@
                             if (!donateCta.matches(':hover')) {
                                 donateCta.style.transition = 'all 0.3s ease';
                                 donateCta.style.transform = 'translateY(-4px)';
-                                
+
                                 setTimeout(() => {
                                     donateCta.style.transform = 'translateY(0)';
                                 }, 300);
@@ -3623,16 +3425,16 @@
                 }
 
                 setupCtaInteraction();
-                
+
                 // === 5. АНИМАЦИЯ ЗАГОЛОВКА СЕКЦИИ ===
-                
+
                 function animateSectionTitle() {
                     const title = document.querySelector('.donate-title');
                     if (title) {
                         title.style.opacity = '0';
                         title.style.transform = 'translateY(30px)';
                         title.style.transition = 'all 1s cubic-bezier(0.4, 0, 0.2, 1)';
-                        
+
                         setTimeout(() => {
                             title.style.opacity = '1';
                             title.style.transform = 'translateY(0)';
@@ -3641,9 +3443,9 @@
                 }
 
                 animateSectionTitle();
-                
+
                 // === 6. ЭФФЕКТ МОНЕТ ===
-                
+
                 function createCoinEffect() {
                     // Создаем контейнер для монет
                     const coinsContainer = document.createElement('div');
@@ -3658,7 +3460,7 @@
                         z-index: -1;
                         overflow: hidden;
                     `;
-                    
+
                     // Создаем 20 монет
                     for (let i = 0; i < 20; i++) {
                         const coin = document.createElement('div');
@@ -3666,7 +3468,7 @@
                         const posX = Math.random() * 100;
                         const delay = Math.random() * 5;
                         const duration = Math.random() * 4 + 3;
-                        
+
                         coin.style.cssText = `
                             position: absolute;
                             width: ${size}px;
@@ -3679,13 +3481,13 @@
                             opacity: 0;
                             animation: coin-fall ${duration}s linear ${delay}s forwards;
                         `;
-                        
+
                         coinsContainer.appendChild(coin);
                     }
-                    
+
                     donateSection.style.position = 'relative';
                     donateSection.appendChild(coinsContainer);
-                    
+
                     // Добавляем CSS для анимации монет
                     const style = document.createElement('style');
                     style.textContent = `@keyframes coin-fall {
@@ -3695,7 +3497,7 @@
                         100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
                     }`;
                     document.head.appendChild(style);
-                    
+
                     // Запускаем анимацию монет каждые 2 секунды
                     setInterval(() => {
                         const coins = coinsContainer.querySelectorAll('div');
@@ -3713,9 +3515,9 @@
                 }
 
                 createCoinEffect();
-                
+
                 // === 7. АНИМАЦИЯ ПРИ ПРОКРУТКЕ ===
-                
+
                 function setupScrollAnimation() {
                     const observer = new IntersectionObserver((entries) => {
                         entries.forEach(entry => {
@@ -3727,26 +3529,26 @@
                                     title.style.opacity = '0';
                                     title.style.transform = 'translateY(30px)';
                                     title.style.transition = 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
-                                    
+
                                     setTimeout(() => {
                                         title.style.opacity = '1';
                                         title.style.transform = 'translateY(0)';
                                     }, 100);
                                 }
-                                
+
                                 // Анимация описания
                                 const desc = entry.target.querySelector('.donate-desc');
                                 if (desc) {
                                     desc.style.opacity = '0';
                                     desc.style.transform = 'translateY(20px)';
                                     desc.style.transition = 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
-                                    
+
                                     setTimeout(() => {
                                         desc.style.opacity = '1';
                                         desc.style.transform = 'translateY(0)';
                                     }, 300);
                                 }
-                                
+
                                 // Анимация карточек
                                 const cards = entry.target.querySelectorAll('.donate-card');
                                 cards.forEach((card, index) => {
@@ -3755,14 +3557,14 @@
                                         card.style.opacity = '0';
                                         card.style.transform = 'translateY(40px)';
                                         card.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
-                                        
+
                                         setTimeout(() => {
                                             card.style.opacity = '1';
                                             card.style.transform = 'translateY(0)';
                                         }, 500 + (index * 200));
                                     }
                                 });
-                                
+
                                 // Останавливаем наблюдение после анимации
                                 observer.unobserve(entry.target);
                             }
@@ -3771,27 +3573,27 @@
                         threshold: 0.1,
                         rootMargin: '0px 0px -100px 0px'
                     });
-                    
+
                     observer.observe(donateSection);
                 }
 
                 setupScrollAnimation();
-                
+
                 // === 8. ЭФФЕКТ МАГНИТА ДЛЯ КУРСОРА ===
-                
+
                 function setupMagneticEffect() {
                     donateCards.forEach(card => {
                         card.addEventListener('mousemove', function(e) {
                             const rect = this.getBoundingClientRect();
                             const x = e.clientX - rect.left;
                             const y = e.clientY - rect.top;
-                            
+
                             const centerX = rect.width / 2;
                             const centerY = rect.height / 2;
-                            
+
                             const moveX = (x - centerX) / 15;
                             const moveY = (y - centerY) / 15;
-                            
+
                             this.style.transform = `translateY(${moveY}px) translateX(${moveX}px) scale(1.05)`;
                         });
 
@@ -3802,9 +3604,9 @@
                 }
 
                 setupMagneticEffect();
-                
+
                 // === 9. СОЗДАНИЕ ДОПОЛНИТЕЛЬНЫХ ЭФФЕКТОВ ===
-                
+
                 function createAdditionalEffects() {
                     // Добавляем частицы вокруг секции
                     const particles = document.createElement('div');
@@ -3819,7 +3621,7 @@
                         z-index: -1;
                         overflow: hidden;
                     `;
-                    
+
                     // Создаем 35 частиц
                     for (let i = 0; i < 35; i++) {
                         const particle = document.createElement('div');
@@ -3828,7 +3630,7 @@
                         const posY = Math.random() * 100;
                         const delay = Math.random() * 5;
                         const duration = Math.random() * 5 + 3;
-                        
+
                         particle.style.cssText = `
                             position: absolute;
                             width: ${size}px;
@@ -3840,13 +3642,13 @@
                             opacity: 0;
                             animation: donate-particle ${duration}s infinite ${delay}s ease-in-out;
                         `;
-                        
+
                         particles.appendChild(particle);
                     }
-                    
+
                     donateSection.style.position = 'relative';
                     donateSection.appendChild(particles);
-                    
+
                     // Добавляем CSS для анимации частиц
                     const style = document.createElement('style');
                     style.textContent = `@keyframes donate-particle {
@@ -3855,22 +3657,22 @@
                         100% { transform: translateY(-40px) rotate(360deg); opacity: 0; }
                     }`;
                     document.head.appendChild(style);
-                    
+
                     // Анимация фона секции
                     let hue = 0;
                     setInterval(() => {
                         hue = (hue + 0.6) % 360;
-                        donateSection.style.background = `linear-gradient(135deg, 
-                            hsl(${hue}, 35%, 95%) 0%, 
+                        donateSection.style.background = `linear-gradient(135deg,
+                            hsl(${hue}, 35%, 95%) 0%,
                             hsl(${(hue + 50) % 360}, 35%, 90%) 100%
                         )`;
                     }, 100);
                 }
 
                 createAdditionalEffects();
-                
+
                 // === 10. ЭФФЕКТ ПОДСВЕТКИ ПРИ НАВЕДЕНИИ ===
-                
+
                 function setupHighlightEffect() {
                     donateCards.forEach((card, index) => {
                         card.addEventListener('mouseenter', function() {
@@ -3887,10 +3689,10 @@
                                 z-index: -1;
                                 animation: highlight 2s infinite;
                             `;
-                            
+
                             this.style.position = 'relative';
                             this.appendChild(highlight);
-                            
+
                             // Удаляем предыдущий эффект при уходе
                             this.addEventListener('mouseleave', function() {
                                 if (highlight.parentElement) {
@@ -3899,7 +3701,7 @@
                             }, { once: true });
                         });
                     });
-                    
+
                     // Добавляем CSS для анимации подсветки
                     const style = document.createElement('style');
                     style.textContent = `@keyframes highlight {
@@ -3910,19 +3712,19 @@
                 }
 
                 setupHighlightEffect();
-                
+
                 // === 11. АНИМАЦИЯ ИКОНОК ===
-                
+
                 function animateIcons() {
                     donateCards.forEach((card, index) => {
                         const amount = card.querySelector('.donate-amount');
-                        
+
                         if (amount) {
                             // Создаем анимацию для суммы
                             amount.style.animation = `pulse ${2 + index * 0.3}s infinite ${index * 0.5}s ease-in-out`;
                         }
                     });
-                    
+
                     // Добавляем CSS для анимации
                     const style = document.createElement('style');
                     style.textContent = `@keyframes pulse {
@@ -3933,9 +3735,9 @@
                 }
 
                 animateIcons();
-                
+
                 // === 12. ЭФФЕКТ ПРЕМИУМ-ПОДДЕРЖКИ ===
-                
+
                 function setupPremiumEffect() {
                     // Добавляем эффект для самой дорогой карточки
                     const premiumCard = donateCards[donateCards.length - 1];
@@ -3952,10 +3754,10 @@
                             animation: bounce 2s infinite;
                             z-index: 2;
                         `;
-                        
+
                         premiumCard.style.position = 'relative';
                         premiumCard.appendChild(crown);
-                        
+
                         // Создаем сияние
                         const glow = document.createElement('div');
                         glow.style.cssText = `
@@ -3969,9 +3771,9 @@
                             z-index: -1;
                             animation: shine 3s infinite;
                         `;
-                        
+
                         premiumCard.appendChild(glow);
-                        
+
                         // Добавляем CSS для анимаций
                         const style = document.createElement('style');
                         style.textContent = `
@@ -3989,9 +3791,9 @@
                 }
 
                 setupPremiumEffect();
-                
+
                 // === 13. АДАПТИВНЫЕ ЭФФЕКТЫ ===
-                
+
                 function handleResponsiveEffects() {
                     function updateStyles() {
                         if (window.innerWidth < 768) {
@@ -4000,7 +3802,7 @@
                                 card.style.width = '160px';
                                 card.style.padding = '1.4rem';
                             });
-                            
+
                             donateAmounts.forEach(amount => {
                                 amount.style.fontSize = '2rem';
                             });
@@ -4010,7 +3812,7 @@
                                 card.style.width = '200px';
                                 card.style.padding = '2rem';
                             });
-                            
+
                             donateAmounts.forEach(amount => {
                                 amount.style.fontSize = '2.2rem';
                             });
@@ -4298,13 +4100,13 @@
             let currentSection = '';
 
             // === 1. ИНТЕЛЛЕКТУАЛЬНОЕ МЕНЮ И НАВИГАЦИЯ ===
-            
+
             // Логика бургер-меню с анимацией
             if (menuToggle && mobileNav) {
                 menuToggle.addEventListener('click', function () {
                     const isActive = menuToggle.classList.toggle('active');
                     mobileNav.classList.toggle('active');
-                    
+
                     // Добавляем анимацию раскрытия
                     if (mobileNav.classList.contains('active')) {
                         mobileNav.style.maxHeight = '600px';
@@ -4345,7 +4147,7 @@
             });
 
             // === 2. ПЛАВНЫЙ СКРОЛЛ С ЯКОРЯМИ И ПРОГРЕССОМ ===
-            
+
             // Плавный скролл для всех якорных ссылок
             allAnchors.forEach(anchor => {
                 anchor.addEventListener('click', function (e) {
@@ -4374,20 +4176,20 @@
             });
 
             // === 3. ОПРЕДЕЛЕНИЕ АКТИВНОЙ СЕКЦИИ ПРИ СКРОЛЛЕ ===
-            
+
             function updateActiveSection() {
                 const scrollPosition = window.scrollY + 200;
-                
+
                 sections.forEach(section => {
                     const sectionTop = section.offsetTop - (header?.offsetHeight || 80);
                     const sectionBottom = sectionTop + section.offsetHeight;
-                    
+
                     if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
                         const sectionId = section.getAttribute('id');
-                        
+
                         if (currentSection !== sectionId) {
                             currentSection = sectionId;
-                            
+
                             // Обновляем активные ссылки
                             navLinks.forEach(link => {
                                 if (link.getAttribute('href') === `#${sectionId}`) {
@@ -4396,7 +4198,7 @@
                                     link.classList.remove('active');
                                 }
                             });
-                            
+
                             mobileLinks.forEach(link => {
                                 if (link.getAttribute('href') === `#${sectionId}`) {
                                     link.classList.add('active');
@@ -4410,7 +4212,7 @@
             }
 
             // === 4. ДЕБАУНСИНГ ДЛЯ ОПТИМИЗАЦИИ ===
-            
+
             function requestTick() {
                 if (!ticking) {
                     requestAnimationFrame(() => {
@@ -4422,7 +4224,7 @@
             }
 
             // === 5. АНИМАЦИИ ПРИ ПОЯВЛЕНИИ ЭЛЕМЕНТОВ ===
-            
+
             const observerOptions = {
                 threshold: 0.1,
                 rootMargin: '0px 0px -100px 0px'
@@ -4463,7 +4265,7 @@
             });
 
             // === 6. АНИМАЦИЯ ХЕДЕРА ПРИ ПРОКРУТКЕ ===
-            
+
             window.addEventListener('scroll', () => {
                 if (!header) return;
 
@@ -4482,12 +4284,12 @@
             });
 
             // === 7. КАРУСЕЛЬ ДЛЯ ЛОГОТИПОВ ПАРТНЁРОВ ===
-            
+
             const partnersSection = document.querySelector('.partners');
             if (partnersSection) {
                 const logos = partnersSection.querySelectorAll('.partner-logo');
                 let currentIndex = 0;
-                
+
                 function rotateLogos() {
                     logos.forEach((logo, index) => {
                         if (index === currentIndex) {
@@ -4500,23 +4302,23 @@
                             logo.style.transform = 'scale(1)';
                         }
                     });
-                    
+
                     currentIndex = (currentIndex + 1) % logos.length;
                 }
-                
+
                 // Запускаем карусель
                 rotateLogos();
                 setInterval(rotateLogos, 3000);
             }
 
             // === 8. ЭФФЕКТ ПАРАЛЛАКСА ДЛЯ ГЛАВНОЙ СЕКЦИИ ===
-            
+
             const heroSection = document.querySelector('.hero');
             if (heroSection) {
                 window.addEventListener('mousemove', (e) => {
                     const xAxis = (window.innerWidth / 2 - e.pageX) / 25;
                     const yAxis = (window.innerHeight / 2 - e.pageY) / 25;
-                    
+
                     heroSection.style.transform = `translateY(${yAxis}px) translateX(${xAxis}px)`;
                 });
 
@@ -4527,20 +4329,20 @@
             }
 
             // === 9. ОБНОВЛЕНИЕ ПРОГРЕСС-БАРА ===
-            
+
             function updateProgressBar() {
                 const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
                 const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
                 const scrolled = (winScroll / height) * 100;
-                
+
                 document.getElementById('progress-bar')?.style.setProperty('--scroll-progress', `${scrolled}%`);
             }
 
             // === 10. ИНИЦИАЛИЗАЦИЯ ВСЕХ КОМПОНЕНТОВ ===
-            
+
             // Обновляем активную секцию при загрузке
             updateActiveSection();
-            
+
             // Добавляем обработчик скролла
             window.addEventListener('scroll', () => {
                 requestTick();
@@ -4549,7 +4351,7 @@
 
             // Инициализируем прогресс-бар при загрузке
             updateProgressBar();
-            
+
             // Создаем прогресс-бар если его нет
             if (!document.getElementById('progress-bar')) {
                 const progressBar = document.createElement('div');
