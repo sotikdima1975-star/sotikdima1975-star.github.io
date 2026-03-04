@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Игры — СайтСотика</title>
+    <title>Обо мне — СайтСотика</title>
     <!-- Глобальные стили -->
     <link rel="stylesheet" href="../../assets/css/reset.css">
     <link rel="stylesheet" href="../../assets/css/base.css">
@@ -13,66 +13,60 @@
     <link rel="stylesheet" href="../../assets/css/adaptive.css">
     <!-- Локальные стили -->
     <style>
-        /* Стили страницы Игр */
-        .section-games {
+        /* Стили страницы Обо мне */
+        .section-about {
             min-height: 100vh;
             padding: 6rem 0;
-            background: var(--color-background);
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
         }
         
-        .games__container {
-            text-align: center;
+        .about__container {
+            display: flex;
+            align-items: center;
+            gap: 4rem;
         }
         
-        .games__title {
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
-            color: #fff;
+        .about__visual {
+            flex: 0 0 40%;
         }
         
-        .games-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin: 3rem 0;
-        }
-        
-        .game-card {
-            background: var(--color-surface);
+        .about__visual img {
+            width: 100%;
             border-radius: var(--radius);
-            padding: 1.5rem;
-            text-align: center;
-            transition: var(--transition);
             box-shadow: var(--shadow);
         }
         
-        .game-card:hover {
-            transform: translateY(-5px);
+        .about__content {
+            flex: 0 0 60%;
         }
         
-        .game-card__logo {
-            width: 100px;
-            height: 100px;
-            margin-bottom: 1rem;
-        }
-        
-        .game-card__name {
-            font-size: 1.25rem;
-            margin-bottom: 0.5rem;
+        .about__content h1 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
             color: #fff;
         }
         
-        .game-card__stats {
-            font-size: 0.875rem;
+        .about__text {
+            font-size: 1.125rem;
+            line-height: 1.8;
             color: var(--color-text-muted);
+            margin-bottom: 1.5rem;
         }
         
         @media (max-width: 767px) {
-            .games__title {
-                font-size: 2rem;
+            .about__container {
+                flex-direction: column;
+                text-align: center;
             }
-            .games-grid {
-                grid-template-columns: 1fr;
+            .about__visual, .about__content {
+                flex: none;
+                width: 100%;
+            }
+            .about__visual {
+                margin-bottom: 2rem;
+            }
+            .about__content h1 {
+                font-size: 2.5rem;
             }
         }
     </style>
@@ -94,8 +88,8 @@
 
         <nav class="nav" id="desktop-nav">
             <a href="../../index.html" class="nav-link">Главная</a>
-            <a href="../about/index.html" class="nav-link">Обо мне</a>
-            <a href="./index.html" class="nav-link active">Игры</a>
+            <a href="./index.html" class="nav-link active">Обо мне</a>
+            <a href="../games/index.html" class="nav-link">Игры</a>
             <a href="../stream/index.html" class="nav-link">Стрим</a>
             <a href="../team/index.html" class="nav-link">Команда</a>
             <a href="../partners/index.html" class="nav-link">Партнеры</a>
@@ -113,55 +107,32 @@
 <!-- Mobile Nav -->
 <nav class="mobile-nav" id="mobile-nav">
     <a href="../../index.html" class="nav-link">Главная</a>
-    <a href="../about/index.html" class="nav-link">Обо мне</a>
-    <a href="./index.html" class="nav-link active">Игры</a>
+    <a href="./index.html" class="nav-link active">Обо мне</a>
+    <a href="../games/index.html" class="nav-link">Игры</a>
     <a href="../stream/index.html" class="nav-link">Стрим</a>
     <a href="../team/index.html" class="nav-link">Команда</a>
     <a href="../partners/index.html" class="nav-link">Партнеры</a>
 </nav>
 
 <main>
-    <!-- SECTION: Мои игры -->
-    <section class="section-games">
+    <!-- SECTION: Обо мне -->
+    <section class="section-about">
         <div class="container">
-            <div class="games__container">
-                <h1 class="games__title">Моё игровое портфолио</h1>
-                <div class="games-grid">
-                    <div class="game-card">
-                        <img src="../../assets/img/games/cs2.jpg" alt="Counter-Strike 2" class="game-card__logo">
-                        <h3 class="game-card__name">Counter-Strike 2</h3>
-                        <p class="game-card__stats">5 лет опыта • 1000+ часов</p>
-                    </div>
-                    <div class="game-card">
-                        <img src="../../assets/img/games/dota2.jpg" alt="Dota 2" class="game-card__logo">
-                        <h3 class="game-card__name">Dota 2</h3>
-                        <p class="game-card__stats">4 года опыта • 800+ часов</p>
-                    </div>
-                    <div class="game-card">
-                        <img src="../../assets/img/games/valorant.jpg" alt="Valorant" class="game-card__logo">
-                        <h3 class="game-card__name">Valorant</h3>
-                        <p class="game-card__stats">3 года опыта • 600+ часов</p>
-                    </div>
-                    <div class="game-card">
-                        <img src="../../assets/img/games/rl.jpg" alt="Rocket League" class="game-card__logo">
-                        <h3 class="game-card__name">Rocket League</h3>
-                        <p class="game-card__stats">2 года опыта • 400+ часов</p>
-                    </div>
-                    <div class="game-card">
-                        <img src="../../assets/img/games/tarkov.jpg" alt="Escape from Tarkov" class="game-card__logo">
-                        <h3 class="game-card__name">Escape from Tarkov</h3>
-                        <p class="game-card__stats">1 год опыта • 300+ часов</p>
-                    </div>
-                    <div class="game-card">
-                        <img src="../../assets/img/games/wow.jpg" alt="World of Warcraft" class="game-card__logo">
-                        <h3 class="game-card__name">World of Warcraft</h3>
-                        <p class="game-card__stats">8 лет опыта • 2000+ часов</p>
-                    </div>
+            <div class="about__container">
+                <div class="about__visual">
+                    <img src="../../assets/img/sotik_portrait.jpg" alt="Фото Сотика">
+                </div>
+                <div class="about__content">
+                    <h1>Моя история</h1>
+                    <p class="about__text">После потери пальцев в 2006 году я столкнулся с выбором: сдаться или идти дальше. Я выбрал второе.</p>
+                    <p class="about__text">Стримы стали моим голосом, а сообщество — семьёй. Вместе мы доказываем, что ограничения — это лишь иллюзия.</p>
+                    <p class="about__text">Каждый мой стрим — это не просто игра, а сообщение о том, что невозможно — возможно. Я играю одной рукой, но побеждаю с душой.</p>
+                    <a href="../donate/index.html" class="cta-button">Поддержать</a>
                 </div>
             </div>
         </div>
     </section>
-    <!-- END SECTION: Мои игры -->
+    <!-- END SECTION: Обо мне -->
 </main>
 
 <footer class="footer">
