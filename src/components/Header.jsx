@@ -29,16 +29,15 @@ export default function Header({ onGameMenu, gameMenuOpen, onTeamMenu, teamMenuO
           return <a className={index === 0 ? 'active' : ''} href={`#${item.toLowerCase().replaceAll(' ', '-')}`} key={item}>{item}</a>;
         })}</div>
         <button className={`mobile-game-btn ${mobileMenuOpen ? 'active' : ''}`} onClick={onMobileMenu} aria-label="Меню">☰</button>
-        {mobileMenuOpen && <div className="mobile-overlay" onClick={() => setMobileMenuOpen(false)} />}
-        <div className={`mobile-drawer ${mobileMenuOpen ? 'open' : ''}`}>
-          <div className="mobile-drawer-header">
-            <span className="mobile-drawer-logo">СайтСотика</span>
-            <button className="mobile-drawer-close" onClick={() => setMobileMenuOpen(false)}>✕</button>
+        {mobileMenuOpen && <div className="mobile-overlay">
+          <div className="mobile-overlay-header">
+            <span className="mobile-overlay-logo">СайтСотика</span>
+            <button className="mobile-overlay-close" onClick={() => setMobileMenuOpen(false)}>✕</button>
           </div>
-          <div className="mobile-drawer-body">
+          <div className="mobile-overlay-body">
             {navigation.map((item, index) => {
-              if (item === 'Игры') return <div key={item} className="mobile-drawer-section"><div className={`mobile-drawer-title ${gameMenuOpen ? 'expanded' : ''}`} onClick={onGameMenu}><span>🎮 {item}</span><i>{gameMenuOpen ? '−' : '+'}</i></div>{gameMenuOpen && <div className="mobile-drawer-sublist">{games.map((g) => <button className={g.id === gameId ? 'selected' : ''} onClick={() => { onGameSelect(g.id); setMobileMenuOpen(false); }} key={g.id}><b>{g.name}</b><small>{g.detail}</small></button>)}</div>}</div>;
-              if (item === 'Команда') return <div key={item} className="mobile-drawer-section"><div className={`mobile-drawer-title ${teamMenuOpen ? 'expanded' : ''}`} onClick={onTeamMenu}><span>👥 {item}</span><i>{teamMenuOpen ? '−' : '+'}</i></div>{teamMenuOpen && <div className="mobile-drawer-sublist">{drivers.map((d) => <button className={d.id === driverId ? 'selected' : ''} onClick={() => { onTeamSelect(d.id); setMobileMenuOpen(false); }} key={d.id}><b>{d.name}</b><span>{d.role}</span></button>)}</div>}</div>;
+              if (item === 'Игры') return <div key={item} className="mobile-overlay-section"><div className={`mobile-overlay-title ${gameMenuOpen ? 'expanded' : ''}`} onClick={onGameMenu}><span>🎮 {item}</span><i>{gameMenuOpen ? '−' : '+'}</i></div>{gameMenuOpen && <div className="mobile-overlay-sublist">{games.map((g) => <button className={g.id === gameId ? 'selected' : ''} onClick={() => { onGameSelect(g.id); setMobileMenuOpen(false); }} key={g.id}><b>{g.name}</b><small>{g.detail}</small></button>)}</div>}</div>;
+              if (item === 'Команда') return <div key={item} className="mobile-overlay-section"><div className={`mobile-overlay-title ${teamMenuOpen ? 'expanded' : ''}`} onClick={onTeamMenu}><span>👥 {item}</span><i>{teamMenuOpen ? '−' : '+'}</i></div>{teamMenuOpen && <div className="mobile-overlay-sublist">{drivers.map((d) => <button className={d.id === driverId ? 'selected' : ''} onClick={() => { onTeamSelect(d.id); setMobileMenuOpen(false); }} key={d.id}><b>{d.name}</b><span>{d.role}</span></button>)}</div>}</div>;
               return <a className={index === 0 ? 'active' : ''} href={`#${item.toLowerCase().replaceAll(' ', '-')}`} onClick={() => setMobileMenuOpen(false)} key={item}><span>· {item}</span></a>;
             })}
           </div>
