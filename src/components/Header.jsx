@@ -29,22 +29,22 @@ export default function Header({ onGameMenu, gameMenuOpen, onTeamMenu, teamMenuO
           return <a className={index === 0 ? 'active' : ''} href={`#${item.toLowerCase().replaceAll(' ', '-')}`} key={item}>{item}</a>;
         })}</div>
         <button className={`mobile-game-btn ${mobileMenuOpen ? 'active' : ''}`} onClick={onMobileMenu} aria-label="Меню">☰</button>
-        {mobileMenuOpen && <div className="mobile-overlay">
-          <div className="mobile-overlay-header">
-            <span className="mobile-overlay-logo">СайтСотика</span>
-            <button className="mobile-overlay-close" onClick={() => setMobileMenuOpen(false)}>✕</button>
-          </div>
-          <div className="mobile-overlay-body">
-            {navigation.map((item, index) => {
-              if (item === 'Игры') return <div key={item} className="mobile-overlay-section"><div className={`mobile-overlay-title ${gameMenuOpen ? 'expanded' : ''}`} onClick={onGameMenu}><span>🎮 {item}</span><i>{gameMenuOpen ? '−' : '+'}</i></div>{gameMenuOpen && <div className="mobile-overlay-sublist">{games.map((g) => <button className={g.id === gameId ? 'selected' : ''} onClick={() => { onGameSelect(g.id); setMobileMenuOpen(false); }} key={g.id}><b>{g.name}</b><small>{g.detail}</small></button>)}</div>}</div>;
-              if (item === 'Команда') return <div key={item} className="mobile-overlay-section"><div className={`mobile-overlay-title ${teamMenuOpen ? 'expanded' : ''}`} onClick={onTeamMenu}><span>👥 {item}</span><i>{teamMenuOpen ? '−' : '+'}</i></div>{teamMenuOpen && <div className="mobile-overlay-sublist">{drivers.map((d) => <button className={d.id === driverId ? 'selected' : ''} onClick={() => { onTeamSelect(d.id); setMobileMenuOpen(false); }} key={d.id}><b>{d.name}</b><span>{d.role}</span></button>)}</div>}</div>;
-              return <a className={index === 0 ? 'active' : ''} href={`#${item.toLowerCase().replaceAll(' ', '-')}`} onClick={() => setMobileMenuOpen(false)} key={item}><span>· {item}</span></a>;
-            })}
-          </div>
-        </div>
         {gameMenuOpen && !mobileMenuOpen && <div className="game-menu-dropdown">{games.map((item) => <button className={item.id === gameId ? 'selected' : ''} onClick={() => onGameSelect(item.id)} key={item.id}><b>{item.name}</b><small>{item.number} / {item.detail}</small></button>)}</div>}
         {teamMenuOpen && !mobileMenuOpen && <div className="team-menu-dropdown">{drivers.map((item) => <button className={item.id === driverId ? 'selected' : ''} onClick={() => onTeamSelect(item.id)} key={item.id}><b>{item.initials}</b><strong>{item.name}</strong><span>{item.role}</span></button>)}</div>}
       </nav>
+      {mobileMenuOpen && <div className="mobile-overlay">
+        <div className="mobile-overlay-header">
+          <span className="mobile-overlay-logo">СайтСотика</span>
+          <button className="mobile-overlay-close" onClick={() => setMobileMenuOpen(false)}>✕</button>
+        </div>
+        <div className="mobile-overlay-body">
+          {navigation.map((item, index) => {
+            if (item === 'Игры') return <div key={item} className="mobile-overlay-section"><div className={`mobile-overlay-title ${gameMenuOpen ? 'expanded' : ''}`} onClick={onGameMenu}><span>🎮 {item}</span><i>{gameMenuOpen ? '−' : '+'}</i></div>{gameMenuOpen && <div className="mobile-overlay-sublist">{games.map((g) => <button className={g.id === gameId ? 'selected' : ''} onClick={() => { onGameSelect(g.id); setMobileMenuOpen(false); }} key={g.id}><b>{g.name}</b><small>{g.detail}</small></button>)}</div>}</div>;
+            if (item === 'Команда') return <div key={item} className="mobile-overlay-section"><div className={`mobile-overlay-title ${teamMenuOpen ? 'expanded' : ''}`} onClick={onTeamMenu}><span>👥 {item}</span><i>{teamMenuOpen ? '−' : '+'}</i></div>{teamMenuOpen && <div className="mobile-overlay-sublist">{drivers.map((d) => <button className={d.id === driverId ? 'selected' : ''} onClick={() => { onTeamSelect(d.id); setMobileMenuOpen(false); }} key={d.id}><b>{d.name}</b><span>{d.role}</span></button>)}</div>}</div>;
+            return <a className={index === 0 ? 'active' : ''} href={`#${item.toLowerCase().replaceAll(' ', '-')}`} onClick={() => setMobileMenuOpen(false)} key={item}><span>· {item}</span></a>;
+          })}
+        </div>
+      </div>}
     </>
   );
 }
