@@ -12,14 +12,14 @@ export default function App() {
     gameId, driverId, trackId, game, driver, track,
     loading, gameMenuOpen, teamMenuOpen,
     setTrackId, setDriverId, handleGameSelect, handleTeamSelect,
-    setGameMenuOpen, setTeamMenuOpen,
+    setGameMenuOpen, setTeamMenuOpen, mobileMenuOpen, setMobileMenuOpen,
   } = useAppState();
 
   return <main className="site-shell">
     <Cover />
     <div className={`loading-screen ${loading ? '' : 'hidden'}`}><span /> ЗАГРУЗКА</div>
     <section className="site-page">
-      <Header gameMenuOpen={gameMenuOpen} onGameMenu={() => { setTeamMenuOpen(false); setGameMenuOpen((open) => !open); }} teamMenuOpen={teamMenuOpen} onTeamMenu={() => { setGameMenuOpen(false); setTeamMenuOpen((open) => !open); }} gameId={gameId} onGameSelect={handleGameSelect} driverId={driverId} onTeamSelect={handleTeamSelect} />
+      <Header gameMenuOpen={gameMenuOpen} onGameMenu={() => { setTeamMenuOpen(false); setGameMenuOpen((open) => !open); }} teamMenuOpen={teamMenuOpen} onTeamMenu={() => { setGameMenuOpen(false); setTeamMenuOpen((open) => !open); }} gameId={gameId} onGameSelect={handleGameSelect} driverId={driverId} onTeamSelect={handleTeamSelect} mobileMenuOpen={mobileMenuOpen} onMobileMenu={() => { setMobileMenuOpen((open) => !open); }} setMobileMenuOpen={setMobileMenuOpen} />
       <Hero game={game} driver={driver} track={track} onTrackChange={setTrackId} />
       <Garage gameId={gameId} driverId={driverId} />
       <Pilots activeId={driverId} onChange={setDriverId} />

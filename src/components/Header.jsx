@@ -1,8 +1,18 @@
+import { useEffect } from 'react';
 import { navigation } from '../data/tracks/index.js';
 import { games } from '../data/games/index.js';
 import { drivers } from '../data/pilots/index.js';
 
-export default function Header({ onGameMenu, gameMenuOpen, onTeamMenu, teamMenuOpen, gameId, onGameSelect, driverId, onTeamSelect }) {
+export default function Header({ onGameMenu, gameMenuOpen, onTeamMenu, teamMenuOpen, gameId, onGameSelect, driverId, onTeamSelect, mobileMenuOpen, onMobileMenu, setMobileMenuOpen }) {
+  useEffect(() => {
+    if (!mobileMenuOpen) return;
+    function handleClick(e) {
+      if (!e.target.closest('.main-nav')) setMobileMenuOpen(false);
+    }
+    document.addEventListener('click', handleClick);
+    return () => document.removeEventListener('click', handleClick);
+  }, [mobileMenuOpen]);
+
   return (
     <>
       <div className="top-line" />
@@ -18,9 +28,16 @@ export default function Header({ onGameMenu, gameMenuOpen, onTeamMenu, teamMenuO
           }
           return <a className={index === 0 ? 'active' : ''} href={`#${item.toLowerCase().replaceAll(' ', '-')}`} key={item}>{item}</a>;
         })}</div>
-        <button className={`mobile-game-btn ${gameMenuOpen || teamMenuOpen ? 'active' : ''}`} onClick={() => { onGameMenu(); }} aria-label="Меню">☰</button>
-        {gameMenuOpen && <div className="game-menu-dropdown">{games.map((item) => <button className={item.id === gameId ? 'selected' : ''} onClick={() => onGameSelect(item.id)} key={item.id}><b>{item.name}</b><small>{item.number} / {item.detail}</small></button>)}</div>}
-        {teamMenuOpen && <div className="team-menu-dropdown">{drivers.map((item) => <button className={item.id === driverId ? 'selected' : ''} onClick={() => onTeamSelect(item.id)} key={item.id}><b>{item.initials}</b><strong>{item.name}</strong><span>{item.role}</span></button>)}</div>}
+        <button className={`mobile-game-btn ${mobileMenuOpen ? 'active' : ''}`} onClick={onMobileMenu} aria-label="Меню">☰</button>
+        {mobileMenuOpen && <div className="mobile-nav-dropdown">
+          {navigation.map((item, index) => {
+            if (item === 'Игры') return <div key={item} className="mobile-nav-section"><div className="mobile-nav-title" onClick={onGameMenu}>🎮 {item} {gameMenuOpen ? '▲' : '▼'}</div>{gameMenuOpen && games.map((g) => <button className={g.id === gameId ? 'selected' : ''} onClick={() => { onGameSelect(g.id); setMobileMenuOpen(false); }} key={g.id}>{g.name}<small>{g.detail}</small></button>)}</div>;
+            if (item === 'Команда') return <div key={item} className="mobile-nav-section"><div className="mobile-nav-title" onClick={onTeamMenu}>👥 {item} {teamMenuOpen ? '▲' : '▼'}</div>{teamMenuOpen && drivers.map((d) => <button className={d.id === driverId ? 'selected' : ''} onClick={() => { onTeamSelect(d.id); setMobileMenuOpen(false); }} key={d.id}>{d.name}<span>{d.role}</span></button>)}</div>;
+            return <a className={index === 0 ? 'active' : ''} href={`#${item.toLowerCase().replaceAll(' ', '-')}`} onClick={() => setMobileMenuOpen(false)} key={item}>{item}</a>;
+          })}
+        </div>}
+        {gameMenuOpen && !mobileMenuOpen && <div className="game-menu-dropdown">{games.map((item) => <button className={item.id === gameId ? 'selected' : ''} onClick={() => onGameSelect(item.id)} key={item.id}><b>{item.name}</b><small>{item.number} / {item.detail}</small></button>)}</div>}
+        {teamMenuOpen && !mobileMenuOpen && <div className="team-menu-dropdown">{drivers.map((item) => <button className={item.id === driverId ? 'selected' : ''} onClick={() => onTeamSelect(item.id)} key={item.id}><b>{item.initials}</b><strong>{item.name}</strong><span>{item.role}</span></button>)}</div>}
       </nav>
     </>
   );

@@ -9,6 +9,7 @@ export default function useAppState() {
   const [trackId, setTrackId] = useState('mugello-gp');
   const [gameMenuOpen, setGameMenuOpen] = useState(false);
   const [teamMenuOpen, setTeamMenuOpen] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [loading, setLoading] = useState(true);
 
   const game = games.find((item) => item.id === gameId) ?? games[0];
@@ -44,8 +45,8 @@ export default function useAppState() {
 
   return {
     gameId, driverId, trackId, game, driver, track,
-    loading, gameMenuOpen, teamMenuOpen,
+    loading, gameMenuOpen, teamMenuOpen, mobileMenuOpen,
     setTrackId, setDriverId, handleGameSelect, handleTeamSelect,
-    setGameMenuOpen, setTeamMenuOpen,
+    setGameMenuOpen, setTeamMenuOpen, setMobileMenuOpen,
   };
 }
