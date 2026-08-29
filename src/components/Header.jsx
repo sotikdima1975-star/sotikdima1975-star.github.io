@@ -21,17 +21,25 @@ export default function Header({ onGameMenu, gameMenuOpen, onTeamMenu, teamMenuO
           return <a className={index === 0 ? 'active' : ''} href={`#${item.toLowerCase().replaceAll(' ', '-')}`} key={item}>{item}</a>;
         })}</div>
         <button className={`mobile-game-btn ${mobileMenuOpen ? 'active' : ''}`} onClick={onMobileMenu} aria-label="Меню">☰</button>
-        {mobileMenuOpen && <div className="mobile-overlay">
-          <div className="mobile-header"><span>СайтСотика</span><button onClick={closeMobile}>✕</button></div>
-          {navigation.map((item) => {
-            if (item === 'Игры') return <div key={item}><div className={`mobile-title ${mGame ? 'exp' : ''}`} onClick={() => setMGame((o) => !o)}><span>🎮 {item}</span><i>{mGame ? '−' : '+'}</i></div>{mGame && games.map((g) => <button className={g.id === gameId ? 'sel' : ''} onClick={() => { onGameSelect(g.id); closeMobile(); }} key={g.id}><b>{g.name}</b><small>{g.detail}</small></button>)}</div>;
-            if (item === 'Команда') return <div key={item}><div className={`mobile-title ${mTeam ? 'exp' : ''}`} onClick={() => setMTeam((o) => !o)}><span>👥 {item}</span><i>{mTeam ? '−' : '+'}</i></div>{mTeam && drivers.map((d) => <button className={d.id === driverId ? 'sel' : ''} onClick={() => { onTeamSelect(d.id); closeMobile(); }} key={d.id}><b>{d.name}</b><span>{d.role}</span></button>)}</div>;
-            return <a href={`#${item.toLowerCase().replaceAll(' ', '-')}`} onClick={closeMobile} key={item}>· {item}</a>;
-          })}
-        </div>}
         {gameMenuOpen && !mobileMenuOpen && <div className="game-menu-dropdown">{games.map((item) => <button className={item.id === gameId ? 'selected' : ''} onClick={() => onGameSelect(item.id)} key={item.id}><b>{item.name}</b><small>{item.number} / {item.detail}</small></button>)}</div>}
         {teamMenuOpen && !mobileMenuOpen && <div className="team-menu-dropdown">{drivers.map((item) => <button className={item.id === driverId ? 'selected' : ''} onClick={() => onTeamSelect(item.id)} key={item.id}><b>{item.initials}</b><strong>{item.name}</strong><span>{item.role}</span></button>)}</div>}
       </nav>
+      {mobileMenuOpen && <div className="mobile-overlay">
+        <div className="mobile-overlay-inner">
+          <div className="mobile-overlay-top">
+            <span className="mobile-overlay-logo">СайтСотика</span>
+            <button className="mobile-overlay-close" onClick={closeMobile}>✕</button>
+          </div>
+          <div className="mobile-overlay-divider" />
+          <div className="mobile-overlay-nav">
+            {navigation.map((item) => {
+              if (item === 'Игры') return <div key={item} className="mobile-overlay-group"><div className={`mobile-overlay-title ${mGame ? 'open' : ''}`} onClick={() => setMGame((o) => !o)}><span className="mobile-overlay-label"><span className="mobile-overlay-icon">🎮</span> {item}</span><span className="mobile-overlay-arrow">{mGame ? '−' : '+'}</span></div>{mGame && <div className="mobile-overlay-sub">{games.map((g) => <button className={g.id === gameId ? 'selected' : ''} onClick={() => { onGameSelect(g.id); closeMobile(); }} key={g.id}><span className="sub-name">{g.name}</span><span className="sub-desc">{g.detail}</span></button>)}</div>}</div>;
+              if (item === 'Команда') return <div key={item} className="mobile-overlay-group"><div className={`mobile-overlay-title ${mTeam ? 'open' : ''}`} onClick={() => setMTeam((o) => !o)}><span className="mobile-overlay-label"><span className="mobile-overlay-icon">👥</span> {item}</span><span className="mobile-overlay-arrow">{mTeam ? '−' : '+'}</span></div>{mTeam && <div className="mobile-overlay-sub">{drivers.map((d) => <button className={d.id === driverId ? 'selected' : ''} onClick={() => { onTeamSelect(d.id); closeMobile(); }} key={d.id}><span className="sub-name">{d.name}</span><span className="sub-desc">{d.role}</span></button>)}</div>}</div>;
+              return <a href={`#${item.toLowerCase().replaceAll(' ', '-')}`} onClick={closeMobile} key={item} className="mobile-overlay-link"><span className="mobile-overlay-label"><span className="mobile-overlay-icon">·</span> {item}</span></a>;
+            })}
+          </div>
+        </div>
+      </div>}
     </>
   );
 }
