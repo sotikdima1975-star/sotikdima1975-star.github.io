@@ -7,7 +7,7 @@ export default function Header({ onGameMenu, gameMenuOpen, onTeamMenu, teamMenuO
   useEffect(() => {
     if (!mobileMenuOpen) return;
     function handleClick(e) {
-      if (!e.target.closest('.main-nav')) setMobileMenuOpen(false);
+      if (e.target.closest('.mobile-overlay')) setMobileMenuOpen(false);
     }
     document.addEventListener('click', handleClick);
     return () => document.removeEventListener('click', handleClick);
@@ -29,13 +29,20 @@ export default function Header({ onGameMenu, gameMenuOpen, onTeamMenu, teamMenuO
           return <a className={index === 0 ? 'active' : ''} href={`#${item.toLowerCase().replaceAll(' ', '-')}`} key={item}>{item}</a>;
         })}</div>
         <button className={`mobile-game-btn ${mobileMenuOpen ? 'active' : ''}`} onClick={onMobileMenu} aria-label="Меню">☰</button>
-        {mobileMenuOpen && <div className="mobile-nav-dropdown">
-          {navigation.map((item, index) => {
-            if (item === 'Игры') return <div key={item} className="mobile-nav-section"><div className="mobile-nav-title" onClick={onGameMenu}>🎮 {item} {gameMenuOpen ? '▲' : '▼'}</div>{gameMenuOpen && games.map((g) => <button className={g.id === gameId ? 'selected' : ''} onClick={() => { onGameSelect(g.id); setMobileMenuOpen(false); }} key={g.id}>{g.name}<small>{g.detail}</small></button>)}</div>;
-            if (item === 'Команда') return <div key={item} className="mobile-nav-section"><div className="mobile-nav-title" onClick={onTeamMenu}>👥 {item} {teamMenuOpen ? '▲' : '▼'}</div>{teamMenuOpen && drivers.map((d) => <button className={d.id === driverId ? 'selected' : ''} onClick={() => { onTeamSelect(d.id); setMobileMenuOpen(false); }} key={d.id}>{d.name}<span>{d.role}</span></button>)}</div>;
-            return <a className={index === 0 ? 'active' : ''} href={`#${item.toLowerCase().replaceAll(' ', '-')}`} onClick={() => setMobileMenuOpen(false)} key={item}>{item}</a>;
-          })}
-        </div>}
+        {mobileMenuOpen && <div className="mobile-overlay" onClick={() => setMobileMenuOpen(false)} />}
+        <div className={`mobile-drawer ${mobileMenuOpen ? 'open' : ''}`}>
+          <div className="mobile-drawer-header">
+            <span className="mobile-drawer-logo">СайтСотика</span>
+            <button className="mobile-drawer-close" onClick={() => setMobileMenuOpen(false)}>✕</button>
+          </div>
+          <div className="mobile-drawer-body">
+            {navigation.map((item, index) => {
+              if (item === 'Игры') return <div key={item} className="mobile-drawer-section"><div className={`mobile-drawer-title ${gameMenuOpen ? 'expanded' : ''}`} onClick={onGameMenu}><span>🎮 {item}</span><i>{gameMenuOpen ? '−' : '+'}</i></div>{gameMenuOpen && <div className="mobile-drawer-sublist">{games.map((g) => <button className={g.id === gameId ? 'selected' : ''} onClick={() => { onGameSelect(g.id); setMobileMenuOpen(false); }} key={g.id}><b>{g.name}</b><small>{g.detail}</small></button>)}</div>}</div>;
+              if (item === 'Команда') return <div key={item} className="mobile-drawer-section"><div className={`mobile-drawer-title ${teamMenuOpen ? 'expanded' : ''}`} onClick={onTeamMenu}><span>👥 {item}</span><i>{teamMenuOpen ? '−' : '+'}</i></div>{teamMenuOpen && <div className="mobile-drawer-sublist">{drivers.map((d) => <button className={d.id === driverId ? 'selected' : ''} onClick={() => { onTeamSelect(d.id); setMobileMenuOpen(false); }} key={d.id}><b>{d.name}</b><span>{d.role}</span></button>)}</div>}</div>;
+              return <a className={index === 0 ? 'active' : ''} href={`#${item.toLowerCase().replaceAll(' ', '-')}`} onClick={() => setMobileMenuOpen(false)} key={item}><span>· {item}</span></a>;
+            })}
+          </div>
+        </div>
         {gameMenuOpen && !mobileMenuOpen && <div className="game-menu-dropdown">{games.map((item) => <button className={item.id === gameId ? 'selected' : ''} onClick={() => onGameSelect(item.id)} key={item.id}><b>{item.name}</b><small>{item.number} / {item.detail}</small></button>)}</div>}
         {teamMenuOpen && !mobileMenuOpen && <div className="team-menu-dropdown">{drivers.map((item) => <button className={item.id === driverId ? 'selected' : ''} onClick={() => onTeamSelect(item.id)} key={item.id}><b>{item.initials}</b><strong>{item.name}</strong><span>{item.role}</span></button>)}</div>}
       </nav>
