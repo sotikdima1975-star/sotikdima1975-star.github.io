@@ -20,23 +20,30 @@ export default function Header({ onGameMenu, gameMenuOpen, onTeamMenu, teamMenuO
           if (item === 'Команда') return <a className={`team-trigger ${teamMenuOpen ? 'active' : ''}`} href="#команда" onClick={(e) => { e.preventDefault(); onTeamMenu(); }} key={item}>{item}</a>;
           return <a className={index === 0 ? 'active' : ''} href={`#${item.toLowerCase().replaceAll(' ', '-')}`} key={item}>{item}</a>;
         })}</div>
-        <button className={`mobile-game-btn ${mobileMenuOpen ? 'active' : ''}`} onClick={onMobileMenu} aria-label="Меню">☰</button>
+        <button className={`mobile-menu-btn ${mobileMenuOpen ? 'open' : ''}`} onClick={onMobileMenu} aria-label="Меню">
+          <span /><span /><span />
+        </button>
         {gameMenuOpen && !mobileMenuOpen && <div className="game-menu-dropdown">{games.map((item) => <button className={item.id === gameId ? 'selected' : ''} onClick={() => onGameSelect(item.id)} key={item.id}><b>{item.name}</b><small>{item.number} / {item.detail}</small></button>)}</div>}
         {teamMenuOpen && !mobileMenuOpen && <div className="team-menu-dropdown">{drivers.map((item) => <button className={item.id === driverId ? 'selected' : ''} onClick={() => onTeamSelect(item.id)} key={item.id}><b>{item.initials}</b><strong>{item.name}</strong><span>{item.role}</span></button>)}</div>}
       </nav>
-      {mobileMenuOpen && <div className="mobile-overlay">
-        <div className="mobile-overlay-inner">
-          <div className="mobile-overlay-top">
-            <span className="mobile-overlay-logo">СайтСотика</span>
-            <button className="mobile-overlay-close" onClick={closeMobile}>✕</button>
+      {mobileMenuOpen && <div className="mobile-menu-panel" onClick={(e) => { if (e.target === e.currentTarget) closeMobile(); }}>
+        <div className="mobile-menu-panel-inner">
+          <div className="mobile-menu-panel-header">
+            <span className="mobile-menu-panel-logo">СайтСотика</span>
+            <button className="mobile-menu-panel-close" onClick={closeMobile}>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2"><path d="M18 6L6 18M6 6l12 12" /></svg>
+            </button>
           </div>
-          <div className="mobile-overlay-divider" />
-          <div className="mobile-overlay-nav">
-            {navigation.map((item) => {
-              if (item === 'Игры') return <div key={item} className="mobile-overlay-group"><div className={`mobile-overlay-title ${mGame ? 'open' : ''}`} onClick={() => setMGame((o) => !o)}><span className="mobile-overlay-label"><span className="mobile-overlay-icon">🎮</span> {item}</span><span className="mobile-overlay-arrow">{mGame ? '−' : '+'}</span></div>{mGame && <div className="mobile-overlay-sub">{games.map((g) => <button className={g.id === gameId ? 'selected' : ''} onClick={() => { onGameSelect(g.id); closeMobile(); }} key={g.id}><span className="sub-name">{g.name}</span><span className="sub-desc">{g.detail}</span></button>)}</div>}</div>;
-              if (item === 'Команда') return <div key={item} className="mobile-overlay-group"><div className={`mobile-overlay-title ${mTeam ? 'open' : ''}`} onClick={() => setMTeam((o) => !o)}><span className="mobile-overlay-label"><span className="mobile-overlay-icon">👥</span> {item}</span><span className="mobile-overlay-arrow">{mTeam ? '−' : '+'}</span></div>{mTeam && <div className="mobile-overlay-sub">{drivers.map((d) => <button className={d.id === driverId ? 'selected' : ''} onClick={() => { onTeamSelect(d.id); closeMobile(); }} key={d.id}><span className="sub-name">{d.name}</span><span className="sub-desc">{d.role}</span></button>)}</div>}</div>;
-              return <a href={`#${item.toLowerCase().replaceAll(' ', '-')}`} onClick={closeMobile} key={item} className="mobile-overlay-link"><span className="mobile-overlay-label"><span className="mobile-overlay-icon">·</span> {item}</span></a>;
+          <nav className="mobile-menu-panel-nav">
+            {navigation.map((item, i) => {
+              if (item === 'Игры') return <div key={item} className="mobile-menu-item" style={{animationDelay: `${i * 0.06}s`}}><button className={`mobile-menu-accordion ${mGame ? 'expanded' : ''}`} onClick={() => setMGame((o) => !o)}><span className="mobile-menu-accordion-label"><svg className="mm-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ff2800" strokeWidth="1.5"><rect x="2" y="6" width="20" height="12" rx="2" /><path d="M6 12h4M14 12h4" /></svg> Игры</span><svg className={`mm-chevron ${mGame ? 'rotated' : ''}`} width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ff2800" strokeWidth="2"><path d="M6 9l6 6 6-6" /></svg></button><div className={`mobile-menu-sub ${mGame ? 'open' : ''}`}>{games.map((g) => <button className={g.id === gameId ? 'active' : ''} onClick={() => { onGameSelect(g.id); closeMobile(); }} key={g.id}>{g.name}<span>{g.detail}</span></button>)}</div></div>;
+              if (item === 'Команда') return <div key={item} className="mobile-menu-item" style={{animationDelay: `${i * 0.06}s`}}><button className={`mobile-menu-accordion ${mTeam ? 'expanded' : ''}`} onClick={() => setMTeam((o) => !o)}><span className="mobile-menu-accordion-label"><svg className="mm-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ff2800" strokeWidth="1.5"><circle cx="9" cy="7" r="3" /><circle cx="15" cy="7" r="3" /><path d="M3 21v-2a4 4 0 014-4h2" /><path d="M21 21v-2a4 4 0 00-4-4h-2" /></svg> Команда</span><svg className={`mm-chevron ${mTeam ? 'rotated' : ''}`} width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ff2800" strokeWidth="2"><path d="M6 9l6 6 6-6" /></svg></button><div className={`mobile-menu-sub ${mTeam ? 'open' : ''}`}>{drivers.map((d) => <button className={d.id === driverId ? 'active' : ''} onClick={() => { onTeamSelect(d.id); closeMobile(); }} key={d.id}>{d.name}<span>{d.role}</span></button>)}</div></div>;
+              return <a href={`#${item.toLowerCase().replaceAll(' ', '-')}`} onClick={closeMobile} key={item} className="mobile-menu-link" style={{animationDelay: `${i * 0.06}s`}}><span className="mm-link-dot" />{item}</a>;
             })}
+          </nav>
+          <div className="mobile-menu-panel-footer">
+            <span>MUGELLO 5.245</span>
+            <span>v1.0</span>
           </div>
         </div>
       </div>}
